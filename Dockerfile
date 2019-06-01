@@ -50,4 +50,5 @@ ADD monit-config/monitrc /etc/
 RUN chown root:root /etc/monitrc
 RUN chmod 0700 /etc/monitrc
 
-# start monit
+# start monit process
+CMD [ "/usr/bin/monit -c /etc/monitrc" ]
