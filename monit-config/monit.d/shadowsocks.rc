@@ -1,0 +1,3 @@
+check process shadowsocks with MATCHING "^.*shadowsocks-server.*$"
+    start program = "/usr/local/sbin/shadowsocksConsole start" with timeout 30 seconds
+    stop program = "/usr/local/sbin/shadowsocksConsole stop"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 
@@ -17,7 +17,7 @@ fi
 
 
 SVRCONF="/etc/kcptun.json"
-DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /var/run/${SVRNAME}.pid  --background -- -c=$SVRCONF"
+DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- -c=$SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
 	echo "$SVRCONF is not exist"
 	exit 1
@@ -33,7 +33,7 @@ do_start()
 do_stop()
 {
 
-    ps -ef | grep  "$SVRNAME" | grep -v "grep" | awk '{print $2}' | while read pid
+    ps -ef | grep  "$SVRNAME" | grep -v "grep" | awk '{print $1}' | while read pid
     do
 	echo "PID:" $pid
         kill -9 $pid
