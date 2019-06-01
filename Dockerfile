@@ -20,6 +20,8 @@ RUN go install -tags netgo -v github.com/xtaci/kcptun/server
 FROM alpine:3.9.4 AS prod
 MAINTAINER zhoubowen <zhoubowen.sky@gmail.com>
 
+# set work dir for app
+WORKDIR .
 RUN apk add monit
 # add start-stop-daemon 
 RUN apk add openrc
