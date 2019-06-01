@@ -23,7 +23,7 @@ WORKDIR /opt
 ADD . .
 
 # add start-stop-daemon 
-RUN apk add monit && apk add openrc
+RUN apk add --no-cach monit && apk add --no-cach openrc
 
 # copy shadowsocks-server binary file from build stage
 RUN mkdir /usr/local/sbin
@@ -34,10 +34,13 @@ RUN cp -rf script/kcptun.json /etc/ && cp -rf script/shadowsocks.json /etc/ && c
 RUN chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole
 
 # copy monit.start shell
-RUN cp -rf script/init_monit.start /etc/local.d/ && chmod +x /etc/local.d/init_monit.start
+#RUN cp -rf script/init_monit.start /etc/local.d/ && chmod +x /etc/local.d/init_monit.start
 
 # some monit files
 RUN rm -rf /etc/monit.d && cp -rf monit-config/monit.d /etc/ && rm -rf /etc/monitrc
 ADD monit-config/monitrc /etc/
 RUN chown root:root /etc/monitrc && chmod 0700 /etc/monitrc
+# set local start
+RUN rc-update add monit && touch /run/openrc/softlevel
+
 
