@@ -41,6 +41,5 @@ RUN rm -rf /etc/monit.d && cp -rf monit-config/monit.d /etc/ && rm -rf /etc/moni
 ADD monit-config/monitrc /etc/
 RUN chown root:root /etc/monitrc && chmod 0700 /etc/monitrc
 # set local start
-RUN rc-update add monit
-
+RUN mkdir -p /run/openrc/ && touch /run/openrc/softlevel && rc-update add monit default
 

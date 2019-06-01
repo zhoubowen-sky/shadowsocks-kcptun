@@ -1,3 +1,3 @@
-check process kcptun with MATCHING "^.*kcptun_server.*$"
+check process kcptun with MATCHING "^.*kcptun_server.*json.*$"
     start program = "/usr/local/sbin/kcptunConsole start" with timeout 30 seconds
     stop program = "/usr/local/sbin/kcptunConsole stop"
