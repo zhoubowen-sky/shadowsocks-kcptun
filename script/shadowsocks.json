@@ -1,0 +1,16 @@
+{
+"server": "0.0.0.0",
+    "port_password": {
+	"8080":"qazwsxedc",
+	"8081":"qazwsxedc8081",
+	"8082":"qazwsxedc8082",
+	"8083":"qazwsxedc8083",
+	"8084":"qazwsxedc8084",
+	"9000":"qazwsxedc",
+	"8085":"qazwsxedc8085"
+    },
+"timeout": 300,
+"method": "aes-256-cfb",
+"fast_open":true,
+"workers": 4
+}

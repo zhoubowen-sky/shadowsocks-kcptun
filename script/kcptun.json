@@ -1,0 +1,7 @@
+{
+    "listen":":4000",
+    "target":"127.0.0.1:9000",
+    "key":"qazwsxedc",
+    "crypt":"aes-192",
+    "mode":"fast2"
+}
