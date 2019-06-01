@@ -46,7 +46,8 @@ ADD script/init_monit.start /etc/local.d/init_monit.start
 RUN rm -rf /etc/monit.d
 RUN cp -rf monit-config/monit.d /etc/
 RUN rm -rf /etc/monitrc
-RUN chmod 700 monit-config/monitrc
 ADD monit-config/monitrc /etc/
+RUN chown root:root /etc/monitrc
+RUN chmod 0700 /etc/monitrc
 
 # start monit
