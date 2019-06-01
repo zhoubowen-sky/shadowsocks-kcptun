@@ -33,9 +33,6 @@ COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 RUN cp -rf script/kcptun.json /etc/ && cp -rf script/shadowsocks.json /etc/ && cp -rf script/kcptunConsole /usr/local/sbin/ && cp -rf script/shadowsocksConsole /usr/local/sbin/
 RUN chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole
 
-# copy monit.start shell
-#RUN cp -rf script/init_monit.start /etc/local.d/ && chmod +x /etc/local.d/init_monit.start
-
 # some monit files
 RUN rm -rf /etc/monit.d && cp -rf monit-config/monit.d /etc/ && rm -rf /etc/monitrc
 ADD monit-config/monitrc /etc/
