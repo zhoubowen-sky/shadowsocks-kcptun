@@ -1,3 +1,4 @@
 #!/bin/sh
 
 /usr/bin/monit -c /etc/monitrc
+

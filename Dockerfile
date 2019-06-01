@@ -7,11 +7,9 @@ MAINTAINER zhoubowen <zhoubowen.sky@gmail.com>
 # set work dir for app
 WORKDIR /go
 # build shadowsocks-server binary file
-RUN go get -d -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
-RUN go install -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
+RUN go get -d -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server && go install -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
 # build kcptun binary file
-RUN go get -d -v github.com/xtaci/kcptun/server
-RUN go install -tags netgo -v github.com/xtaci/kcptun/server
+RUN go get -d -v github.com/xtaci/kcptun/server && go install -tags netgo -v github.com/xtaci/kcptun/server
 
 
 #
@@ -24,9 +22,8 @@ MAINTAINER zhoubowen <zhoubowen.sky@gmail.com>
 WORKDIR /opt
 ADD . .
 
-RUN apk add monit
 # add start-stop-daemon 
-RUN apk add openrc
+RUN apk add monit && apk add openrc
 
 # copy shadowsocks-server binary file from build stage
 RUN mkdir /usr/local/sbin
@@ -43,12 +40,7 @@ ADD script/shadowsocksConsole /usr/local/sbin/
 ADD script/init_monit.start /etc/local.d/init_monit.start
 
 # some monit files
-RUN rm -rf /etc/monit.d
-RUN cp -rf monit-config/monit.d /etc/
-RUN rm -rf /etc/monitrc
+RUN rm -rf /etc/monit.d && cp -rf monit-config/monit.d /etc/ && rm -rf /etc/monitrc
 ADD monit-config/monitrc /etc/
-RUN chown root:root /etc/monitrc
-RUN chmod 0700 /etc/monitrc
+RUN chown root:root /etc/monitrc && chmod 0700 /etc/monitrc
 
-# start monit process
-CMD [ "/usr/bin/monit -c /etc/monitrc" ]
