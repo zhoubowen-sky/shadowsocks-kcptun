@@ -40,6 +40,4 @@ RUN chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole
 RUN rm -rf /etc/monit.d && cp -rf monit-config/monit.d /etc/ && rm -rf /etc/monitrc
 ADD monit-config/monitrc /etc/
 RUN chown root:root /etc/monitrc && chmod 0700 /etc/monitrc
-# set local start
-RUN mkdir -p /run/openrc/ && touch /run/openrc/softlevel && rc-update add monit default
 
