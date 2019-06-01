@@ -30,7 +30,7 @@ RUN mkdir /usr/local/sbin
 COPY --from=build /go/bin/shadowsocks-server /usr/local/sbin/shadowsocks-server
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 # copy configuration files
-RUN cp -rf script/kcptun.json /etc/ && cp -rf script/shadowsocks.json /etc/ && cp -rf script/kcptunConsole /usr/local/sbin/ && cp-rf script/shadowsocksConsole /usr/local/sbin/
+RUN cp -rf script/kcptun.json /etc/ && cp -rf script/shadowsocks.json /etc/ && cp -rf script/kcptunConsole /usr/local/sbin/ && cp -rf script/shadowsocksConsole /usr/local/sbin/
 RUN chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole
 
 # copy monit.start shell
