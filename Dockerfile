@@ -21,7 +21,7 @@ FROM alpine:3.9.4 AS prod
 MAINTAINER zhoubowen <zhoubowen.sky@gmail.com>
 
 # set work dir for app
-WORKDIR .
+WORKDIR ./
 RUN apk add monit
 # add start-stop-daemon 
 RUN apk add openrc
@@ -31,11 +31,11 @@ RUN mkdir /usr/local/sbin
 COPY --from=build /go/bin/shadowsocks-server /usr/local/sbin/shadowsocks-server
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 # copy configuration files
-RUN chmod a+x script/kcptunConsole script/shadowsocksConsole script/init_monit.start
-ADD script/kcptun.json /etc/
-ADD script/shadowsocks.json /etc/
-ADD script/kcptunConsole /usr/local/sbin/
-ADD script/shadowsocksConsole /usr/local/sbin/
+RUN chmod a+x ./script/kcptunConsole ./script/shadowsocksConsole ./script/init_monit.start
+ADD ./script/kcptun.json /etc/
+ADD ./script/shadowsocks.json /etc/
+ADD ./script/kcptunConsole /usr/local/sbin/
+ADD ./script/shadowsocksConsole /usr/local/sbin/
 
 # copy monit.start shell
 ADD script/init_monit.start /etc/local.d/init_monit.start
