@@ -15,7 +15,6 @@ if [[ $# -ne 1 ]]; then
 	exit 1
 fi
 
-
 SVRCONF="/etc/kcptun.json"
 DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- -c=$SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
@@ -32,13 +31,11 @@ do_start()
 
 do_stop()
 {
-
     ps -ef | grep  "$SVRNAME" | grep -v "grep" | awk '{print $1}' | while read pid
     do
 	echo "PID:" $pid
         kill -9 $pid
     done
-
     echo "stopped $SVRNAME service"
 }
 
