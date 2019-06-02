@@ -18,7 +18,7 @@ RUN go get -d -v github.com/xtaci/kcptun/server \
 #
 # PRODUCTION STAGE
 # 
-FROM alpine:3.9.4 AS prod
+FROM alpine:3.9.4
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
