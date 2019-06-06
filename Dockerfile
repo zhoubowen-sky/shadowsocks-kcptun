@@ -9,13 +9,13 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 WORKDIR /go
 # build shadowsocks-server binary file
 RUN go get -d -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server \
-    && go install -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
+    && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
 # build kcptun binary file
 RUN go get -d -v github.com/xtaci/kcptun/server \
-    && go install -tags netgo -v github.com/xtaci/kcptun/server
+    && go install -ldflags '-w -s' -tags netgo -v github.com/xtaci/kcptun/server
 # build go-shadowsocks2 binary file
 RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
-    && go install -tags netgo -v github.com/shadowsocks/go-shadowsocks2
+    && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/go-shadowsocks2
 
 #
 # PRODUCTION STAGE
@@ -23,6 +23,12 @@ RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
 FROM alpine:3.9.4
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
+
+# set time zone
+ARG TZ='Asia/Shanghai'
+ENV TZ ${TZ}
+RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone
 
 # set work dir for app
 WORKDIR /opt
