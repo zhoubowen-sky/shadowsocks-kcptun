@@ -16,7 +16,8 @@ RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
 # prepare shadowsocksr 
 RUN git clone ${SSR} \
     && cd /go/shadowsocksr \
-    && bash initcfg.sh 
+    && bash initcfg.sh \
+    && rm -rf .git
 
 #
 # PRODUCTION STAGE

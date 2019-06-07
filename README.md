@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks-kcptun for breaking the GFW.
+An alpine-based docker image with shadowsocks-kcptun and shadowsocksr for breaking the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server for building proxy services
