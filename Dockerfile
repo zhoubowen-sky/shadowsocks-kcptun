@@ -40,10 +40,11 @@ RUN apk update \
     && apk add openrc 
 
 # build shadowsocks-libev 
-RUN apk add --virtual .build-deps \
+RUN apk add \
     autoconf \
     automake \
     build-base \
+    git \
     c-ares-dev \
     libev-dev \
     libtool \
@@ -51,7 +52,6 @@ RUN apk add --virtual .build-deps \
     linux-headers \
     mbedtls-dev \
     pcre-dev \
-    git \
     # build binary and install
     && git clone ${SS_DOWNLOAD_URL} \
     && cd shadowsocks-libev \
@@ -60,7 +60,8 @@ RUN apk add --virtual .build-deps \
     && ./configure --prefix=/usr --disable-documentation \
     && make install \
     && rm -rf /var/cache/apk/* \
-    && rm -rf /opt/shadowsocks-libev/
+    && rm -rf /opt/shadowsocks-libev/ \
+    && apk del autoconf automake build-base git 
 
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
