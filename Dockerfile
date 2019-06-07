@@ -19,8 +19,6 @@ FROM alpine:3.9.4
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git
-
 # set time zone
 ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
