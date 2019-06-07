@@ -5,9 +5,6 @@ FROM golang:1.12.5 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# build shadowsocks-server binary file
-RUN go get -d -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server \
-    && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
 # build kcptun binary file
 RUN go get -d -v github.com/xtaci/kcptun/server \
     && go install -ldflags '-w -s' -tags netgo -v github.com/xtaci/kcptun/server
@@ -39,39 +36,8 @@ RUN apk update \
     && apk add monit \
     && apk add openrc 
 
-# build shadowsocks-libev 
-RUN apk add --no-cache --virtual .build-deps \
-    autoconf \
-    automake \
-    build-base \
-    git \
-    c-ares-dev \
-    libev-dev \
-    libtool \
-    libsodium-dev \
-    linux-headers \
-    mbedtls-dev \
-    pcre-dev \
-    # build binary and install
-    && git clone ${SS_DOWNLOAD_URL} \
-    && cd shadowsocks-libev \
-    && git submodule update --init --recursive \
-    && ./autogen.sh \
-    && ./configure --prefix=/usr --disable-documentation \
-    && make install \
-    && apk del .build-deps \
-    # add shadowsocks-libev runtime dependencies
-    && apk add --no-cache \
-      rng-tools \
-      $(scanelf --needed --nobanner /usr/bin/ss-* \
-      | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-      | sort -u) \
-    && rm -rf /var/cache/apk/* \
-    && rm -rf /opt/shadowsocks-libev/
-
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
-COPY --from=build /go/bin/shadowsocks-server /usr/local/sbin/shadowsocks-server
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 
@@ -79,10 +45,8 @@ COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
-    && cp -rf script/shadowsocksConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
-    && cp -rf script/shadowsocksLibevConsole /usr/local/sbin/ \
-    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole /usr/local/sbin/shadowsocks2Console /usr/local/sbin/shadowsocksLibevConsole
+    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocks2Console
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \
