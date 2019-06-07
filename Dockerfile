@@ -5,8 +5,6 @@ FROM golang:1.12.5 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# set work dir for app
-WORKDIR /go
 # build shadowsocks-server binary file
 RUN go get -d -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server \
     && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
@@ -39,8 +37,7 @@ ADD . .
 RUN apk update \
     && apk upgrade \
     && apk add --no-cach monit \
-    && apk add --no-cach openrc \
-    && rm -rf /var/cache/apk/*
+    && apk add --no-cach openrc 
 
 # build shadowsocks-libev 
 RUN set -ex \
@@ -54,6 +51,7 @@ RUN set -ex \
     libsodium-dev \
     linux-headers \
     mbedtls-dev \
+    pcre-dev \
     git \
     # build binary and install
     && git clone ${SS_DOWNLOAD_URL} \
@@ -62,7 +60,8 @@ RUN set -ex \
     && ./autogen.sh \
     && ./configure --prefix=/usr --disable-documentation \
     && make install \
-    && apk del .build-deps 
+    && apk del .build-deps \
+    && rm -rf /var/cache/apk/*
 
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
