@@ -40,7 +40,7 @@ RUN apk update \
     && apk add openrc 
 
 # build shadowsocks-libev 
-RUN apk add \
+RUN apk add --no-cache --virtual .build-deps \
     autoconf \
     automake \
     build-base \
@@ -59,9 +59,15 @@ RUN apk add \
     && ./autogen.sh \
     && ./configure --prefix=/usr --disable-documentation \
     && make install \
+    && apk del .build-deps \
+    # add shadowsocks-libev runtime dependencies
+    && apk add --no-cache \
+      rng-tools \
+      $(scanelf --needed --nobanner /usr/bin/ss-* \
+      | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+      | sort -u) \
     && rm -rf /var/cache/apk/* \
-    && rm -rf /opt/shadowsocks-libev/ \
-    && apk del autoconf automake build-base git 
+    && rm -rf /opt/shadowsocks-libev/
 
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
