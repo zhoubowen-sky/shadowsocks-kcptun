@@ -13,7 +13,7 @@ An alpine-based docker image with shadowsocks-kcptun and shadowsocksr for breaki
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun:tagname`
 - 4、Create container<br>
-  `docker run --privileged --restart=always -tid -p 10000:10000 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
+  `docker run --privileged --restart=always -tid  -p 10000:10000 -p 10001:10001 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
 
 ## Configuration information
 - [kcptun](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
