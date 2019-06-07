@@ -1,0 +1,3 @@
+check process shadowsocksr with MATCHING "^.*server.py.*json.*$"
+    start program = "/usr/local/sbin/shadowsocksRConsole start" with timeout 30 seconds
+    stop program = "/usr/local/sbin/shadowsocksRConsole stop"

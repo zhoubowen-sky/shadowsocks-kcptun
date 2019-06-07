@@ -5,12 +5,18 @@ FROM golang:1.12.5 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
+ENV SSR=https://github.com/shadowsocksrr/shadowsocksr.git
+
 # build kcptun binary file
 RUN go get -d -v github.com/xtaci/kcptun/server \
     && go install -ldflags '-w -s' -tags netgo -v github.com/xtaci/kcptun/server
 # build go-shadowsocks2 binary file
 RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
     && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/go-shadowsocks2
+# prepare shadowsocksr 
+RUN git clone ${SSR} \
+    && cd /go/shadowsocksr \
+    && bash initcfg.sh 
 
 #
 # PRODUCTION STAGE
@@ -31,20 +37,22 @@ ADD . .
 # add start-stop-daemon 
 RUN apk update \
     && apk upgrade \
-    && apk add monit \
-    && apk add openrc 
+    && apk add monit openrc
 
-# copy shadowsocks and kcptun binary file from build stage
+# copy shadowsocks shadowsocksr and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
+COPY --from=build /go/shadowsocksr /usr/local/sbin/shadowsocksr
 
-# copy shadowsocks and kcptun configuration files
+# copy shadowsocks shadowsocksr and kcptun configuration files
 RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
+    && cp -rf script/shadowsocksr.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
-    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocks2Console
+    && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
+    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocks2Console /usr/local/sbin/shadowsocksRConsole
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \
