@@ -36,12 +36,11 @@ ADD . .
 # add start-stop-daemon 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cach monit \
-    && apk add --no-cach openrc 
+    && apk add monit \
+    && apk add openrc 
 
 # build shadowsocks-libev 
-RUN set -ex \
-    && apk add --no-cache --virtual .build-deps \
+RUN apk add --virtual .build-deps \
     autoconf \
     automake \
     build-base \
