@@ -24,11 +24,12 @@ FROM alpine:3.9.4
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
+ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev.git
+
 # set time zone
 ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
-RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone
+RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
 # set work dir for app
 WORKDIR /opt
@@ -40,6 +41,28 @@ RUN apk update \
     && apk add --no-cach monit \
     && apk add --no-cach openrc \
     && rm -rf /var/cache/apk/*
+
+# build shadowsocks-libev 
+RUN set -ex \
+    && apk add --no-cache --virtual .build-deps \
+    autoconf \
+    automake \
+    build-base \
+    c-ares-dev \
+    libev-dev \
+    libtool \
+    libsodium-dev \
+    linux-headers \
+    mbedtls-dev \
+    git \
+    # build binary and install
+    && git clone ${SS_DOWNLOAD_URL} \
+    && cd shadowsocks-libev \
+    && git submodule update --init --recursive \
+    && ./autogen.sh \
+    && ./configure --prefix=/usr --disable-documentation \
+    && make install \
+    && apk del .build-deps 
 
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
@@ -53,7 +76,8 @@ RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
-    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole /usr/local/sbin/shadowsocks2Console
+    && cp -rf script/shadowsocksLibevConsole /usr/local/sbin/ \
+    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocksConsole /usr/local/sbin/shadowsocks2Console /usr/local/sbin/shadowsocksLibevConsole
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \

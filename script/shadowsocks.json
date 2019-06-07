@@ -1,10 +1,9 @@
 {
 "server": "0.0.0.0",
     "port_password": {
-	"9000":"qazwsxedc",
-	"8085":"qazwsxedc8085"
+	"10000":"qazwsxedc"
     },
 "timeout": 300,
-"method": "aes-256-cfb",
+"method": "aes-256-gcm",
 "workers": 4
 }
