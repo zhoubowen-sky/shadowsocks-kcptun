@@ -59,8 +59,8 @@ RUN apk add --virtual .build-deps \
     && ./autogen.sh \
     && ./configure --prefix=/usr --disable-documentation \
     && make install \
-    && apk del .build-deps \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /opt/shadowsocks-libev/
 
 # copy shadowsocks and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
