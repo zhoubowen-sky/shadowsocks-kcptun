@@ -6,13 +6,15 @@ FROM golang:1.12.5 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SSR=https://github.com/shadowsocksrr/shadowsocksr.git
+ENV KCPTUN=github.com/xtaci/kcptun/server
+ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
 
 # build kcptun binary file
-RUN go get -d -v github.com/xtaci/kcptun/server \
-    && go install -ldflags '-w -s' -tags netgo -v github.com/xtaci/kcptun/server
+RUN go get -d -v ${KCPTUN} \
+    && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN}
 # build go-shadowsocks2 binary file
-RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
-    && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/go-shadowsocks2
+RUN go get -d -v ${GOSS2} \
+    && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
 # prepare shadowsocksr 
 RUN git clone ${SSR} \
     && cd /go/shadowsocksr \
@@ -53,7 +55,9 @@ RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
     && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
-    && chmod a+x /usr/local/sbin/kcptunConsole /usr/local/sbin/shadowsocks2Console /usr/local/sbin/shadowsocksRConsole
+    && chmod a+x /usr/local/sbin/kcptunConsole \
+    /usr/local/sbin/shadowsocks2Console \
+    /usr/local/sbin/shadowsocksRConsole
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \
