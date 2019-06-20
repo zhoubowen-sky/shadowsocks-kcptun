@@ -42,9 +42,9 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 #### Ss with kcptun
   kcptun plugin option `key=qazwsxedc;crypt=aes-192;mode=fast2`(for mac)<br>
   kcptun plugin option `-l %SS_LOCAL_HOST%:%SS_LOCAL_PORT% -r %SS_REMOTE_HOST%:%SS_REMOTE_PORT% --key qazwsxedc --crypt aes-192 --mode fast2`(for win)
-![ss-kcp-mac](doc/ss-kcp-mac.png)
-![ss-kcp-win](doc/ss-kcp-win.png)
+![ss-kcp-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-mac.png)
+![ss-kcp-win](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-win.png)
 #### Ss without kcptun
-![ss-mac](doc/ss-mac.png)
+![ss-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-mac.png)
 #### Ssr for ios
-![ssr-ios](doc/ssr-ios.png)
+![ssr-ios](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ssr-ios.png)
