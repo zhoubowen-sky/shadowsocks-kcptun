@@ -20,14 +20,18 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - [shadowsocks](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
 - [shadowsocksr](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocksr.json)
 
-## Other 
-#### Shadowsocks information
+## Default parameter for client
+#### Shadowsocks parameter
 - Ss ip: `your clould server ip`
 - Ss port: `10000`
 - Ss passwd: `qazwsxedc`
 - Ss encrypt: `aes-256-gcm`
-
-#### ShadowsocksR information
+#### Kcptun (just for ss port 10000)
+- kcptun port: `4000`
+- kcptun passwd: `qazwsxedc`
+- kcptun encrypt: `aes-192`
+- kcptun mode: `fast2`
+#### ShadowsocksR parameter
 - Ssr ip: `your clould server ip`
 - Ssr port: `10001`
 - Ssr passwd: `qazwsxedc`
