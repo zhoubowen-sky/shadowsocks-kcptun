@@ -39,10 +39,12 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - Ssr protocol: `auth_aes128_md5`
 - Ssr obfs: `tls1.2_ticket_auth`
 ## Config example
-- Ss with kcptun<br>
+#### Ss with kcptun
   kcptun plugin option `key=qazwsxedc;crypt=aes-192;mode=fast2`(for mac)<br>
   kcptun plugin option `-l %SS_LOCAL_HOST%:%SS_LOCAL_PORT% -r %SS_REMOTE_HOST%:%SS_REMOTE_PORT% --key qazwsxedc --crypt aes-192 --mode fast2`(for win)
 ![ss-kcp-mac](doc/ss-kcp-mac.png)
 ![ss-kcp-win](doc/ss-kcp-win.png)
-- Ss without kcptun
+#### Ss without kcptun
 ![ss-mac](doc/ss-mac.png)
+#### Ssr for ios
+![ssr-ios](doc/ssr-ios.png)
