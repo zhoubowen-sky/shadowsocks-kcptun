@@ -1,10 +1,11 @@
 #
 # BUILD STAGE
 #
-FROM golang:1.12 AS build
+FROM golang:1.12.6 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
+# default use master branch code
 ENV SSR=https://github.com/shadowsocksrr/shadowsocksr.git
 ENV KCPTUN=github.com/xtaci/kcptun/server
 ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
@@ -24,7 +25,7 @@ RUN git clone ${SSR} \
 #
 # PRODUCTION STAGE
 # 
-FROM alpine:3.9.4
+FROM alpine:3.10.0
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
