@@ -65,7 +65,8 @@ RUN rm -rf /etc/monit.d \
     && rm -rf /etc/monitrc \
     && cp -rf monit-config/monitrc /etc/ \
     && chown root:root /etc/monitrc \
-    && chmod 0700 /etc/monitrc
+    && chmod 0700 /etc/monitrc \
+    && rm -rf /opt/*
 
 # set monit boot up 
 RUN rc-update add monit 
