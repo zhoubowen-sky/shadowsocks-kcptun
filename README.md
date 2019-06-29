@@ -15,7 +15,7 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - 4、Create a container<br>
   `docker run --privileged --restart=always -tid  -p 10000:10000 -p 10001:10001 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
 - 5、Emmmmm...<br>
-  Now the server is finished. You can access Google through ss or ssr client, here are parameters for client
+  Now the server is finished. You can access Google through ss or ssr client, here are parameters for client.
 
 ## Default parameters for client
 ### Shadowsocks parameter
@@ -35,7 +35,11 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - Ssr encrypt: `aes-256-cfb`
 - Ssr protocol: `auth_aes128_md5`
 - Ssr obfs: `tls1.2_ticket_auth`
-## Config example
+
+## Open bbr
+ to be continued ...
+
+## Examples
 ### Ss with kcptun
   kcptun plugin option (for mac):<br>
   `key=qazwsxedc;crypt=aes-192;mode=fast2`<br>
