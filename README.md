@@ -56,3 +56,8 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - [kcptun](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
 - [shadowsocks](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
 - [shadowsocksr](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocksr.json)
+
+## References
+- 1、https://github.com/xtaci/kcptun
+- 2、https://github.com/shadowsocksrr/shadowsocksr
+- 3、https://github.com/shadowsocks/go-shadowsocks2
