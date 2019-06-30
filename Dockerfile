@@ -11,16 +11,11 @@ ENV KCPTUN=github.com/xtaci/kcptun/server
 ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
 
 # build kcptun binary file
-RUN go get -d -v ${KCPTUN} \
-    && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN}
+RUN go get -d -v ${KCPTUN} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN}
 # build go-shadowsocks2 binary file
-RUN go get -d -v ${GOSS2} \
-    && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
-# prepare shadowsocksr 
-RUN git clone ${SSR} \
-    && cd /go/shadowsocksr \
-    && bash initcfg.sh \
-    && rm -rf .git
+RUN go get -d -v ${GOSS2} && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
+# download shadowsocksr 
+RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 
 #
 # PRODUCTION STAGE
@@ -39,9 +34,7 @@ WORKDIR /opt
 ADD . .
 
 # add start-stop-daemon 
-RUN apk update \
-    && apk upgrade \
-    && apk add monit openrc python
+RUN apk update && apk upgrade && apk add monit openrc python
 
 # copy shadowsocks shadowsocksr and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
@@ -66,8 +59,7 @@ RUN rm -rf /etc/monit.d \
     && rm -rf /etc/monitrc \
     && cp -rf monit-config/monitrc /etc/ \
     && chown root:root /etc/monitrc \
-    && chmod 0700 /etc/monitrc \
-    && rm -rf /opt/*
+    && chmod 0700 /etc/monitrc
 
 # set monit boot up 
 RUN rc-update add monit 
