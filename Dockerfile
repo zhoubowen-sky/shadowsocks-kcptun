@@ -6,15 +6,14 @@ FROM golang:1.12.6 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # default use master branch code
-ENV SSR=https://github.com/shadowsocksrr/shadowsocksr.git
+ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git 
+# https://github.com/shadowsocksrr/shadowsocksr.git
 ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
 ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 
 # build kcptun binary file
 # RUN go get -d -v ${KCPTUN_REPO} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN_REPO}
-ENV KCPTUN_VERSION=v20190611
-ENV KCPTUN_VERSION_ALIAS=20190611
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/{KCPTUN_VERSION}/kcptun-linux-amd64-{KCPTUN_VERSION_ALIAS}.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190611/kcptun-linux-amd64-20190611.tar.gz
 
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
