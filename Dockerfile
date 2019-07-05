@@ -8,7 +8,8 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 # default use master branch code
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git 
 # https://github.com/shadowsocksrr/shadowsocksr.git
-ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
+ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
+# github.com/shadowsocks/go-shadowsocks2
 ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 
 # build kcptun binary file
