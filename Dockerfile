@@ -7,11 +7,18 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # default use master branch code
 ENV SSR=https://github.com/shadowsocksrr/shadowsocksr.git
-ENV KCPTUN=github.com/xtaci/kcptun/server
 ENV GOSS2=github.com/shadowsocks/go-shadowsocks2
+ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 
 # build kcptun binary file
-RUN go get -d -v ${KCPTUN} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN}
+# RUN go get -d -v ${KCPTUN_REPO} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN_REPO}
+ENV KCPTUN_VERSION=v20190611
+ENV KCPTUN_VERSION_ALIAS=20190611
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/{KCPTUN_VERSION}/kcptun-linux-amd64-{KCPTUN_VERSION_ALIAS}.tar.gz
+
+RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+
+
 # build go-shadowsocks2 binary file
 RUN go get -d -v ${GOSS2} && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
 # download shadowsocksr 
