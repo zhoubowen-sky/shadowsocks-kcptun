@@ -42,9 +42,6 @@ COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 COPY --from=build /go/shadowsocksr /usr/local/sbin/shadowsocksr
 
-# binary compression 
-RUN apk add upx && upx -9 /usr/local/sbin/kcptun_server /usr/local/sbin/go-shadowsocks2 && apk del upx
-
 # copy shadowsocks shadowsocksr and kcptun configuration files
 RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
