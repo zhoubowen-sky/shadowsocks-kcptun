@@ -59,9 +59,11 @@ RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
     && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
+    && cp -rf script/brookConsole /usr/local/sbin/ \
     && chmod a+x /usr/local/sbin/kcptunConsole \
     /usr/local/sbin/shadowsocks2Console \
-    /usr/local/sbin/shadowsocksRConsole
+    /usr/local/sbin/shadowsocksRConsole \
+    /usr/local/sbin/brookConsole
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \
