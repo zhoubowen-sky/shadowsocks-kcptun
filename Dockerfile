@@ -15,8 +15,11 @@ ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 # ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 # RUN go get -d -v ${KCPTUN_REPO} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN_REPO}
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190611/kcptun-linux-amd64-20190611.tar.gz
-
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+
+# brook
+ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
+RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 
 # build go-shadowsocks2 binary file
 RUN go get -d -v ${GOSS2} && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
@@ -47,6 +50,7 @@ RUN mkdir /usr/local/sbin
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 COPY --from=build /go/shadowsocksr /usr/local/sbin/shadowsocksr
+COPY --from=build /go/bin/brook /usr/local/sbin/brook
 
 # copy shadowsocks shadowsocksr and kcptun configuration files
 RUN cp -rf script/kcptun.json /etc/ \
