@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -13,7 +13,7 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
-  `docker run --privileged --restart=always -tid  -p 10000:10000 -p 10001:10001 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
+  `docker run --privileged --restart=always -tid  -p 10000:10000 -p 10001:10001 -p 10002:10002 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
 - 5、Emmmmm...<br>
   Now the server is finished. You can access Google through ss or ssr client, here are parameters for client.
 
@@ -35,11 +35,18 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - Ssr encrypt: `aes-256-cfb`
 - Ssr protocol: `auth_aes128_md5`
 - Ssr obfs: `tls1.2_ticket_auth`
+### Brook parameter
+- Brook ip: `your server ip`
+- Brook port: `10002`
+- Brook passwd: `qazwsxedc`
 
 ## Open bbr
  to be continued ...
 
 ## Examples
+### Brook
+![brook-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/brook-mac.png)
+
 ### Ss with kcptun
   kcptun plugin option (for mac):<br>
   `key=qazwsxedc;crypt=aes-192;mode=fast2`<br>
@@ -61,3 +68,4 @@ An alpine-based docker image with shadowsocks, kcptun and shadowsocksr for cross
 - 1、https://github.com/xtaci/kcptun
 - 2、https://github.com/shadowsocksrr/shadowsocksr
 - 3、https://github.com/shadowsocks/go-shadowsocks2
+- 4、https://github.com/txthinking/brook
