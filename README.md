@@ -15,7 +15,7 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - 4、Create a container<br>
   `docker run --privileged --restart=always -tid  -p 10000:10000 -p 10001:10001 -p 10002:10002 -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
 - 5、Emmmmm...<br>
-  Now the server is finished. You can access Google through ss or ssr client, here are parameters for client.
+  Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
 
 ## Default parameters for client
 ### Shadowsocks parameter

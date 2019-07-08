@@ -5,8 +5,8 @@ FROM golang:1.12.6 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# default use master branch code
-ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git 
+# default manyuser branch code
+ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 # https://github.com/shadowsocksrr/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 # github.com/shadowsocks/go-shadowsocks2
@@ -14,10 +14,10 @@ ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 # build kcptun binary file
 # ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 # RUN go get -d -v ${KCPTUN_REPO} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN_REPO}
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190611/kcptun-linux-amd64-20190611.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/20190708/kcptun-linux-arm64-20190708.tar.gz
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
-# brook
+# brook binary file
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 

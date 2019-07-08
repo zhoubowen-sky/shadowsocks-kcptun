@@ -1,1 +1,1 @@
-here are shadowsocks and kcptun startup script and some configuration files.
+here are some startup script files and some configuration files.
