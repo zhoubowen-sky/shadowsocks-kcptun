@@ -43,7 +43,7 @@ WORKDIR /opt
 ADD . .
 
 # add start-stop-daemon 
-RUN apk update && apk upgrade && apk add monit openrc python
+RUN apk --no-cache add monit openrc python
 
 # copy shadowsocks shadowsocksr and kcptun binary file from build stage
 RUN mkdir /usr/local/sbin
