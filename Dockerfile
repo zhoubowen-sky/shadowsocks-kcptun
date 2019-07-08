@@ -14,7 +14,7 @@ ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 # build kcptun binary file
 # ENV KCPTUN_REPO=github.com/xtaci/kcptun/server
 # RUN go get -d -v ${KCPTUN_REPO} && go install -ldflags '-w -s' -tags netgo -v ${KCPTUN_REPO}
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/20190708/kcptun-linux-arm64-20190708.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190611/kcptun-linux-amd64-20190611.tar.gz
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
 # brook binary file
