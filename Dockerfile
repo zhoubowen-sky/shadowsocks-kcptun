@@ -25,20 +25,20 @@ RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 FROM alpine:3.10.0
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# set time zone
+# time zone
 ARG TZ='Asia/Shanghai'
 ENV TZ ${TZ}
 RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
-# set work dir for app
+# workspace for app
 WORKDIR /opt
 ADD . .
 
 # add start-stop-daemon 
 RUN apk --no-cache add monit openrc python
 
-# copy shadowsocks shadowsocksr and kcptun binary file from build stage
-RUN mkdir /usr/local/sbin
+# copy shadowsocks、brook shadowsocksr and kcptun binary file from build stage
+RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 COPY --from=build /go/shadowsocksr /usr/local/sbin/shadowsocksr
