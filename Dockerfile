@@ -4,19 +4,19 @@
 FROM golang:1.12.6 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# some 
+# env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190611/kcptun-linux-amd64-20190611.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
 
-# kcptun binary file
+# download kcptun binary file
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
-# brook binary file
+# download brook binary file
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # build go-shadowsocks2 binary file
 RUN go get -d -v ${GOSS2} && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
-# download shadowsocksr 
+# download shadowsocksr files
 RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 
 ######################
