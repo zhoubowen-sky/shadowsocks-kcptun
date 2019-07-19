@@ -28,6 +28,7 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - kcptun passwd: `qazwsxedc`
 - kcptun encrypt: `aes-192`
 - kcptun mode: `fast2`
+- kcptun autoexpire: `60`
 ### ShadowsocksR parameter
 - Ssr ip: `your server ip`
 - Ssr port: `10001`
@@ -49,9 +50,9 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 
 ### Ss with kcptun
   kcptun plugin option (for mac):<br>
-  `key=qazwsxedc;crypt=aes-192;mode=fast2`<br>
+  `key=qazwsxedc;crypt=aes-192;mode=fast2;autoexpire=60`<br>
   kcptun plugin option (for windows):<br>
-  `-l %SS_LOCAL_HOST%:%SS_LOCAL_PORT% -r %SS_REMOTE_HOST%:%SS_REMOTE_PORT% --key qazwsxedc --crypt aes-192 --mode fast2`
+  `-l %SS_LOCAL_HOST%:%SS_LOCAL_PORT% -r %SS_REMOTE_HOST%:%SS_REMOTE_PORT% --key qazwsxedc --crypt aes-192 --mode fast2 --autoexpire 60`
 ![ss-kcp-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-mac.png)
 ![ss-kcp-win](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-win.png)
 
