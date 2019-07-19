@@ -3,5 +3,6 @@
     "target":"127.0.0.1:10000",
     "key":"qazwsxedc",
     "crypt":"aes-192",
-    "mode":"fast2"
+    "mode":"fast2",
+    "autoexpire":60
 }
