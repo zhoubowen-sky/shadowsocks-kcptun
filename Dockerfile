@@ -9,7 +9,6 @@ ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190718/kcptun-linux-amd64-20190718.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
-ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
 # download kcptun binary file
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
@@ -25,6 +24,8 @@ RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 ######################
 FROM alpine:3.10.1
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
+
+ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
 # time zone
 ARG TZ='Asia/Shanghai'
