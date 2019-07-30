@@ -7,7 +7,7 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190718/kcptun-linux-amd64-20190718.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190725/kcptun-linux-amd64-20190725.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
 
 # download kcptun binary file
@@ -36,6 +36,8 @@ RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezon
 WORKDIR /opt
 ADD . .
 
+# alpine update
+RUN apk --no-cache update && apk --no-cache upgrade
 # add start-stop-daemon and python runtime
 RUN apk --no-cache add monit openrc python
 # build shadowsocks-libev binary
