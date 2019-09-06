@@ -1,13 +1,13 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.12.7 AS build
+FROM golang:1.13.0 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190809/kcptun-linux-amd64-20190809.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20190905/kcptun-linux-amd64-20190905.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
 
 # download kcptun binary file
@@ -22,7 +22,7 @@ RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM alpine:3.10.1
+FROM alpine:3.10.2
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
