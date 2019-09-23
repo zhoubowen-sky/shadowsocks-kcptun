@@ -18,7 +18,7 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
   Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
 
 ## Default parameters for client
-### Shadowsocks parameter
+### Shadowsocks parameter (NOT SUPPORT NOW !!!)
 - Ss ip: `your server ip`
 - Ss port: `10000`
 - Ss passwd: `qazwsxedc`
