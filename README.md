@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, brook <del>and shadowsocksr</del> for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
