@@ -13,29 +13,29 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
-  `docker run --privileged --restart=always -tid  -p 10001:10001/tcp -p 10002:10002/tcp -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
+  `docker run --privileged --restart=always -tid -p 10002:10002/tcp -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
 - 5、Emmmmm...<br>
   Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
 
 ## Default parameters for client
-### Shadowsocks parameter (NOT SUPPORT NOW !!!)
-- Ss ip: `your server ip`
-- Ss port: `10000`
-- Ss passwd: `qazwsxedc`
-- Ss encrypt: `aes-256-gcm`
+### <del>Shadowsocks parameter (NOT SUPPORT NOW !!!)
+- <del>Ss ip: `your server ip`
+- <del>Ss port: `10000`
+- <del>Ss passwd: `qazwsxedc`
+- <del>Ss encrypt: `aes-256-gcm`
 ### Kcptun (just for ss port 10000)
 - kcptun port: `4000`
 - kcptun passwd: `qazwsxedc`
 - kcptun encrypt: `aes-192`
 - kcptun mode: `fast2`
 - kcptun autoexpire: `60`
-### ShadowsocksR parameter
-- Ssr ip: `your server ip`
-- Ssr port: `10001`
-- Ssr passwd: `qazwsxedc`
-- Ssr encrypt: `aes-256-cfb`
-- Ssr protocol: `auth_aes128_md5`
-- Ssr obfs: `tls1.2_ticket_auth`
+### <del>ShadowsocksR parameter (NOT SUPPORT NOW !!!)
+- <del>Ssr ip: `your server ip`
+- <del>Ssr port: `10001`
+- <del>Ssr passwd: `qazwsxedc`
+- <del>Ssr encrypt: `aes-256-cfb`
+- <del>Ssr protocol: `auth_aes128_md5`
+- <del>Ssr obfs: `tls1.2_ticket_auth`
 ### Brook parameter
 - Brook ip: `your server ip`
 - Brook port: `10002`
@@ -56,10 +56,10 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 ![ss-kcp-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-mac.png)
 ![ss-kcp-win](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-win.png)
 
-### Ss without kcptun
+### <del>Ss without kcptun (NOT SUPPORT NOW !!!)
 ![ss-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-mac.png)
 
-### Ssr for ios
+### <del>Ssr for ios (NOT SUPPORT NOW !!!)
 ![ssr-ios](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ssr-ios.png)
 
 ## Server configuration information
