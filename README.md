@@ -18,17 +18,21 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
   Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
 
 ## Default parameters for client
-### <del>Shadowsocks parameter (NOT SUPPORT NOW !!!)
-- <del>Ss ip: `your server ip`
-- <del>Ss port: `10000`
-- <del>Ss passwd: `qazwsxedc`
-- <del>Ss encrypt: `aes-256-gcm`
+### Brook parameter
+- Brook ip: `your server ip`
+- Brook port: `10002`
+- Brook passwd: `qazwsxedc`
 ### Kcptun (just for ss port 10000)
 - kcptun port: `4000`
 - kcptun passwd: `qazwsxedc`
 - kcptun encrypt: `aes-192`
 - kcptun mode: `fast2`
 - kcptun autoexpire: `60`
+### <del>Shadowsocks parameter (NOT SUPPORT NOW !!!)
+- <del>Ss ip: `your server ip`
+- <del>Ss port: `10000`
+- <del>Ss passwd: `qazwsxedc`
+- <del>Ss encrypt: `aes-256-gcm`
 ### <del>ShadowsocksR parameter (NOT SUPPORT NOW !!!)
 - <del>Ssr ip: `your server ip`
 - <del>Ssr port: `10001`
@@ -36,10 +40,6 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - <del>Ssr encrypt: `aes-256-cfb`
 - <del>Ssr protocol: `auth_aes128_md5`
 - <del>Ssr obfs: `tls1.2_ticket_auth`
-### Brook parameter
-- Brook ip: `your server ip`
-- Brook port: `10002`
-- Brook passwd: `qazwsxedc`
 
 ## Open bbr
  to be continued ...
