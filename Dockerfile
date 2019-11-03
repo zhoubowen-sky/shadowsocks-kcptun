@@ -1,7 +1,7 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.13.0 AS build
+FROM golang:1.13.4 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
@@ -22,7 +22,7 @@ RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM alpine:3.10.2
+FROM alpine:3.10.3
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
