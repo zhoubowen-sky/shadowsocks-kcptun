@@ -1,7 +1,7 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.13.4 AS build
+FROM golang:1.13.5 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
@@ -72,10 +72,10 @@ RUN apk add --no-cache --virtual .build-deps \
 
 # copy shadowsocks、brook shadowsocksr and kcptun binary file from build stage
 RUN mkdir -p /usr/local/sbin
-COPY --from=build /go/bin/server /usr/local/sbin/kcptun_server
+COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
-COPY --from=build /go/shadowsocksr /usr/local/sbin/shadowsocksr
-COPY --from=build /go/bin/brook /usr/local/sbin/brook
+COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
+COPY --from=build /go/bin/brook           /usr/local/sbin/brook
 
 # copy shadowsocks shadowsocksr and kcptun configuration files
 RUN cp -rf script/kcptun.json /etc/ \
