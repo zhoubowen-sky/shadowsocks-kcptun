@@ -13,8 +13,8 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
-  `docker run --privileged --restart=always -tid -p 10000:10000  -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
-  `docker run --privileged --restart=always -tid -p 10002:10002/tcp -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`
+  `docker run --privileged --restart=always -tid -p 10000:10000 -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 10003:10003 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  
 - 5、Emmmmm...<br>
   Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
 
@@ -67,6 +67,16 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 - [kcptun](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
 - [shadowsocks](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
 - [shadowsocksr](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocksr.json)
+
+## 相关端口使用情况
+
+应用名称 | 所用端口
+:-: | :-:
+kcptun | 4000
+shadowsocks-go | 10000
+shadowsocksr | 10001
+brook | 10002
+shadowsocks-libev | 10003
 
 ## References
 - 1、https://github.com/xtaci/kcptun

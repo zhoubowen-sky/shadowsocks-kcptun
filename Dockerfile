@@ -7,8 +7,8 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20191127/kcptun-linux-amd64-20191127.tar.gz
-ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20190601/brook
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20191219/kcptun-linux-amd64-20191219.tar.gz
+ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
 
 # download kcptun binary file
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
@@ -28,9 +28,9 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
 # time zone
-ARG TZ='Asia/Shanghai'
-ENV TZ ${TZ}
-RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
+# ARG TZ='Asia/Shanghai'
+# ENV TZ ${TZ}
+# RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
 # workspace for app
 WORKDIR /opt
@@ -70,7 +70,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && rm -rf /opt/shadowsocks-libev/
 
 
-# copy shadowsocks、brook shadowsocksr and kcptun binary file from build stage
+# copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
 RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2

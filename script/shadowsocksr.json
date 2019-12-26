@@ -14,5 +14,5 @@
     "redirect":"",
     "dns_ipv6":false,
     "fast_open":false,
-    "workers":1
+    "workers":4
 }
