@@ -11,7 +11,7 @@ SVRBIN=/usr/local/sbin/${SVRNAME}
 
 USAGE="Usage: $0 {start|stop|restart}"
 
-PARAMS="ss://AEAD_AES_256_GCM:qazwsxedc@:10000"
+PARAMS="ss://AEAD_AES_256_GCM:qazwsxedc@:10003"
 DAEMON="start-stop-daemon --start --background --pidfile /tmp/${SVRNAME}.pid --exec $SVRBIN -- -s $PARAMS"
 
 do_start()

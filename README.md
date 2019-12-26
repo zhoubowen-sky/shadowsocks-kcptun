@@ -16,34 +16,47 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
   `docker run --privileged --restart=always -tid -p 10000:10000 -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 10003:10003 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
   
 - 5、Emmmmm...<br>
-  Now the server is finished. You can access Google through ss, ssr or brook client, here are parameters for these clients.
+  Now the server is finished. You can access Google through ss, ssr or brook clients, here are parameters for these clients.
 
 ## Default parameters for client
-### Brook parameter
-- Brook ip: `your server ip`
-- Brook port: `10002`
-- Brook passwd: `qazwsxedc`
 ### Kcptun (just for ss port 10000)
-- kcptun port: `4000`
-- kcptun passwd: `qazwsxedc`
-- kcptun encrypt: `aes-192`
-- kcptun mode: `fast2`
-- kcptun autoexpire: `60`
-### Shadowsocks parameter (NOT SUPPORT NOW !!!)
-- Ss ip: `your server ip`
-- Ss port: `10000`
-- Ss passwd: `qazwsxedc`
-- Ss encrypt: `aes-256-gcm`
-### ShadowsocksR parameter (NOT SUPPORT NOW !!!)
-- Ssr ip: `your server ip`
-- Ssr port: `10001`
-- Ssr passwd: `qazwsxedc`
-- Ssr encrypt: `aes-256-cfb`
-- Ssr protocol: `auth_aes128_md5`
-- Ssr obfs: `tls1.2_ticket_auth`
+KCPTUN参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+端口(port) | 4000
+密码(passwd) | qazwsxedc
+加密方式(encrypt) | aes-192
+模式(mode) | fast3
+过期时间(autoexpire) | 60
+
+### Shadowsocks parameter
+SHADOWSOCKS参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+端口(port) | 10000
+密码(passwd) | qazwsxedc
+加密方式(encrypt) | aes-256-gcm
+
+### ShadowsocksR parameter
+SHADOWSOCKSR参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+端口(port) | 10001
+密码(passwd) | qazwsxedc
+加密方式(encrypt) | aes-256-cfb
+加密协议(protocol) | auth_aes128_md5
+混淆方式(obfs) | tls1.2_ticket_auth
+
+### Brook parameter
+BROOK参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+端口(port) | 10002
+密码(passwd) | qazwsxedc
 
 ## Open bbr
- to be continued ...
+ To be continued ... <br>
+ For [CentOS7](https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7) ...
 
 ## Examples
 ### Brook
@@ -57,10 +70,10 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 ![ss-kcp-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-mac.png)
 ![ss-kcp-win](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-win.png)
 
-### Ss without kcptun (NOT SUPPORT NOW !!!)
+### Ss without kcptun
 ![ss-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-mac.png)
 
-### Ssr for ios (NOT SUPPORT NOW !!!)
+### Ssr for ios
 ![ssr-ios](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ssr-ios.png)
 
 ## Server configuration information
@@ -73,10 +86,10 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
 应用名称 | 所用端口
 :-: | :-:
 kcptun | 4000
-shadowsocks-go | 10000
+shadowsocks-libev | 10000
 shadowsocksr | 10001
 brook | 10002
-shadowsocks-libev | 10003
+go-shadowsocks2 | 10003
 
 ## References
 - 1、https://github.com/xtaci/kcptun
