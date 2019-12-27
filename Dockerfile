@@ -61,7 +61,6 @@ RUN apk add --no-cache --virtual .build-deps \
       | sort -u) \
     && rm -rf /opt/shadowsocks-libev/
 
-
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
 RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
@@ -81,6 +80,8 @@ RUN cp -rf script/kcptun.json /etc/ \
     /usr/local/sbin/brookConsole \
     /usr/local/sbin/shadowsocksLibevConsole 
 
+# remove unused files
+RUN rm -rf .git .gitignore doc
 
 # copy monit configuration files
 RUN rm -rf /etc/monit.d \
