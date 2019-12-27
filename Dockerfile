@@ -65,7 +65,6 @@ RUN apk add --no-cache --virtual .build-deps \
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
 RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
-COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
 
