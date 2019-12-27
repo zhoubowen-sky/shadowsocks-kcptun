@@ -89,10 +89,8 @@ kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
 brook | 10002
-go-shadowsocks2 | 10003
 
 ## References
 - 1、https://github.com/xtaci/kcptun
 - 2、https://github.com/shadowsocksrr/shadowsocksr
-- 3、https://github.com/shadowsocks/go-shadowsocks2
-- 4、https://github.com/txthinking/brook
+- 3、https://github.com/txthinking/brook

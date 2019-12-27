@@ -6,7 +6,7 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
-ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
+# ENV GOSS2=github.com/zhoubowen-sky/go-shadowsocks2
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20191219/kcptun-linux-amd64-20191219.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
 
@@ -14,8 +14,6 @@ ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/br
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 # download brook binary file
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
-# build go-shadowsocks2 binary file
-RUN go get -d -v ${GOSS2} && go install -ldflags '-w -s' -tags netgo -v ${GOSS2}
 # download shadowsocksr files
 RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 
@@ -82,12 +80,10 @@ RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
     && cp -rf script/shadowsocksr.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
-    && cp -rf script/shadowsocks2Console /usr/local/sbin/ \
     && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksLibevConsole /usr/local/sbin/ \
     && cp -rf script/brookConsole /usr/local/sbin/ \
     && chmod a+x /usr/local/sbin/kcptunConsole \
-    /usr/local/sbin/shadowsocks2Console \
     /usr/local/sbin/shadowsocksRConsole \
     /usr/local/sbin/brookConsole \
     /usr/local/sbin/shadowsocksLibevConsole 
