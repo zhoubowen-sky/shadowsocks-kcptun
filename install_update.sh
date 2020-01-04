@@ -25,11 +25,12 @@ echo LINE + "docker服务安装完成" + LINE
 # 拉取 docker 镜像
 docker pull zhoubowen123/shadowsocks-kcptun
 
-# 删除 docker 多余镜像
-docker images | grep zhoubowen123 | grep
-
 # 删除 docker 多余容器
+docker ps -a | grep zhoubowen123 | awk '{print $1}' | xargs docker rm -f
 
+# 删除 docker 多余镜像
+docker images | grep zhoubowen123 | grep none | awk '{print $3}' | xargs docker rmi -f
 
 # 创建 docker 容器
 docker run --privileged --restart=always -tid -p 10000:10000 -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 10003:10003 -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init
+
