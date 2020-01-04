@@ -26,7 +26,7 @@ echo LINE + "docker服务安装完成" + LINE
 docker pull zhoubowen123/shadowsocks-kcptun
 
 # 删除 docker 多余容器
-docker ps -a | grep zhoubowen123 | awk '{print $1}' | xargs docker rm -f
+docker ps -a | grep 10000 | awk '{print $1}' | xargs docker rm -f
 
 # 删除 docker 多余镜像
 docker images | grep zhoubowen123 | grep none | awk '{print $3}' | xargs docker rmi -f
