@@ -8,21 +8,21 @@ LINE=" ====================== "
 
 # 更新系统
 yum -y update
-echo LINE + "系统更新已经完成" + LINE
+echo $LINE + "系统更新已经完成" + $LINE
 sleep 1
 
 # 安装 docker 依赖
 yum install -y yum-utils device-mapper-persistent-data lvm2
 rm -rf /etc/yum.repos.d/docker-ce.repo
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-echo LINE + "docker依赖包安装完成" + LINE
+echo $LINE + "docker依赖包安装完成" + $LINE
 sleep 1
 
 # 安装 docker 并将其设置为开机启动
 yum -y install docker-ce
 systemctl start docker
 systemctl enable docker
-echo LINE + "docker服务安装完成" + LINE
+echo $LINE + "docker服务安装完成" + $LINE
 sleep 3
 
 # 拉取 docker 镜像
