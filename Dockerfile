@@ -67,11 +67,10 @@ RUN apk add --no-cache --virtual .build-deps \
     && rm -rf /opt/shadowsocks-libev/
 
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
-RUN mkdir -p /usr/local/sbin
+RUN mkdir -p /usr/local/sbin && cp -f /opt/trojan/trojan /usr/local/sbin/trojan
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
-COPY /opt/trojan/trojan                   /usr/local/sbin/trojan
 
 # copy shadowsocks shadowsocksr kcptun and trojan configuration files
 RUN cp -rf script/kcptun.json /etc/ \
