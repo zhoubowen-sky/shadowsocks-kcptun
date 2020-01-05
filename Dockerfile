@@ -1,17 +1,18 @@
-#################
-## BUILD STAGE ##
-#################
-FROM golang:1.13.5 AS build
+
+######################
+## PRODUCTION STAGE ##
+######################
+FROM alpine:3.11.2
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-# env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200103/kcptun-linux-amd64-20200103.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
 ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
+ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
 # download kcptun binary file
-RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+RUN mkdir -p /go/bin/ && cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 # download brook binary file
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
@@ -22,13 +23,6 @@ RUN xz *.xz
 RUN tar -xvf *.tar 
 RUN cp -f trojan/trojan trojan_server
 
-######################
-## PRODUCTION STAGE ##
-######################
-FROM alpine:3.11.2
-LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
-
-ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
 # workspace for app
 WORKDIR /opt
