@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, brook trojan and shadowsocksr for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -19,6 +19,13 @@ An alpine-based docker image with shadowsocks + kcptun, brook and shadowsocksr f
   Now the server is finished. You can access Google through ss, ssr or brook clients, here are parameters for these clients.
 
 ## Default parameters for client
+### Trojan
+TROJAN参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+端口(port) | 443
+密码(passwd) | qazwsxedc
+
 ### Kcptun (just for ss port 10000)
 KCPTUN参数名 | 参数取值
 -: | :-
@@ -85,6 +92,7 @@ BROOK参数名 | 参数取值
 
 应用名称 | 所用端口
 :-: | :-:
+trojan | 443
 kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
