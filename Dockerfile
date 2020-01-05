@@ -5,30 +5,30 @@
 FROM alpine:3.11.2
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
+# workspace for app
+WORKDIR /opt
+ADD . .
+
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200103/kcptun-linux-amd64-20200103.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
 ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
-RUN apk add git && mkdir -p /go/bin/
-
+RUN apk add git
 # download kcptun binary file
-RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+RUN wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 # download brook binary file
-RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
+RUN wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
-RUN cd /go && git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
+RUN git clone ${SSR} && cd shadowsocksr && bash initcfg.sh && rm -rf .git
 # download trojan file
-RUN cd /go/bin && wget ${TROJAN_URL} && apt-get install xz-utils
+RUN wget ${TROJAN_URL}
 RUN xz *.xz 
 RUN tar -xvf *.tar 
 RUN cp -f trojan/trojan trojan_server
 
 
-# workspace for app
-WORKDIR /opt
-ADD . .
 
 # alpine update
 RUN apk --no-cache update && apk --no-cache upgrade
@@ -65,10 +65,10 @@ RUN apk add --no-cache --virtual .build-deps \
 
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
 RUN mkdir -p /usr/local/sbin
-COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
-COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
-COPY --from=build /go/bin/brook           /usr/local/sbin/brook
-COPY --from=build /go/bin/trojan_server   /usr/local/sbin/trojan
+COPY --from=build /opt/server          /usr/local/sbin/kcptun_server
+COPY --from=build /opt/shadowsocksr    /usr/local/sbin/shadowsocksr
+COPY --from=build /opt/brook           /usr/local/sbin/brook
+COPY --from=build /opt/trojan_server   /usr/local/sbin/trojan
 
 # copy shadowsocks shadowsocksr kcptun and trojan configuration files
 RUN cp -rf script/kcptun.json /etc/ \
