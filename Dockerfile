@@ -15,7 +15,7 @@ ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/br
 ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
-RUN apk add git
+RUN apk add git bash
 # download kcptun binary file
 RUN wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 # download brook binary file
@@ -27,7 +27,6 @@ RUN wget ${TROJAN_URL}
 RUN xz *.xz 
 RUN tar -xvf *.tar 
 RUN cp -f trojan/trojan trojan_server
-
 
 
 # alpine update
