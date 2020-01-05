@@ -28,6 +28,7 @@ ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 WORKDIR /opt
 ADD . .
 
+RUN mkdir -p /usr/local/sbin
 # build trojan file
 RUN apk add --no-cache --virtual .build-deps \
         build-base \
@@ -82,7 +83,6 @@ RUN apk add --no-cache --virtual .build-deps \
     && rm -rf /opt/shadowsocks-libev/
 
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
-RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
