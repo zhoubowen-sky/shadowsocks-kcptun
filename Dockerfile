@@ -18,7 +18,7 @@ RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64
 # download brook binary file
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
-RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
+RUN cd /go && git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 # download trojan file
 RUN cd /go/bin && wget ${TROJAN_URL} && apt-get install xz-utils
 RUN xz *.xz 
