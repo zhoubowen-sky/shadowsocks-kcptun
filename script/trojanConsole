@@ -15,8 +15,8 @@ if [[ $# -ne 1 ]]; then
 	exit 1
 fi
 
-SVRCONF="/etc/trojan_server.json"
-DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- -c=$SVRCONF"
+SVRCONF="-c /etc/trojan_server.json"
+DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- $SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
 	echo "$SVRCONF is not exist"
 	exit 1
