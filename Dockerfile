@@ -23,15 +23,30 @@ FROM alpine:3.11.2
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
-ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
 
 # workspace for app
 WORKDIR /opt
 ADD . .
 
-# download trojan file
-RUN wget ${TROJAN_URL} 
-RUN tar -xvJf *.xz
+# build trojan file
+RUN apk add --no-cache --virtual .build-deps \
+        build-base \
+        cmake \
+        boost-dev \
+        openssl-dev \
+        mariadb-connector-c-dev \
+        git \
+    && git clone https://github.com/trojan-gfw/trojan.git \
+    && (cd trojan && cmake . && make -j $(nproc) && strip -s trojan \
+    && mv trojan /usr/local/sbin) \
+    && rm -rf trojan \
+    && apk del .build-deps \
+    && apk add --no-cache --virtual .trojan-rundeps \
+        libstdc++ \
+        boost-system \
+        boost-program_options \
+        mariadb-connector-c
+
 
 # alpine update
 RUN apk --no-cache update && apk --no-cache upgrade
@@ -67,7 +82,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && rm -rf /opt/shadowsocks-libev/
 
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
-RUN mkdir -p /usr/local/sbin && cp -f /opt/trojan/trojan /usr/local/sbin/trojan
+RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
