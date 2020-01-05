@@ -17,7 +17,10 @@ RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
 RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 # download trojan file
-RUN cd /go/bin && wget ${TROJAN_URL} && xz *.xz && tar -xvf *.tar && cp -f trojan/trojan trojan_server
+RUN cd /go/bin && wget ${TROJAN_URL} 
+RUN xz *.xz 
+RUN tar -xvf *.tar 
+RUN cp -f trojan/trojan trojan_server
 
 ######################
 ## PRODUCTION STAGE ##
