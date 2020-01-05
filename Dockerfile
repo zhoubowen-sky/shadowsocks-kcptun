@@ -11,8 +11,10 @@ ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/br
 ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
 
+RUN apk add git && mkdir -p /go/bin/
+
 # download kcptun binary file
-RUN mkdir -p /go/bin/ && cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
 # download brook binary file
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
