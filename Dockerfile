@@ -30,7 +30,8 @@ WORKDIR /opt
 ADD . .
 
 # download trojan file
-RUN wget ${TROJAN_URL} && tar -xvJf *.xz
+RUN wget ${TROJAN_URL} 
+RUN tar -xvJf *.xz
 
 # alpine update
 RUN apk --no-cache update && apk --no-cache upgrade
