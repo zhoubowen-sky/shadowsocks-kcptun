@@ -8,6 +8,7 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200103/kcptun-linux-amd64-20200103.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
+ENV TROJAN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
 
 # download kcptun binary file
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
@@ -15,6 +16,8 @@ RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64
 RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
 RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
+# download trojan file
+RUN cd /go/bin && wget ${TROJAN_URL} && tar -xf *.xz && cp -f trojan/trojan trojan_server
 
 ######################
 ## PRODUCTION STAGE ##
@@ -66,19 +69,23 @@ RUN mkdir -p /usr/local/sbin
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
+COPY --from=build /go/bin/trojan_server   /usr/local/sbin/trojan
 
-# copy shadowsocks shadowsocksr and kcptun configuration files
+# copy shadowsocks shadowsocksr kcptun and trojan configuration files
 RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
     && cp -rf script/shadowsocksr.json /etc/ \
+    && cp -rf script/trojan_server.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksLibevConsole /usr/local/sbin/ \
     && cp -rf script/brookConsole /usr/local/sbin/ \
+    && cp -rf script/trojanConsole /usr/local/sbin/ \
     && chmod a+x /usr/local/sbin/kcptunConsole \
     /usr/local/sbin/shadowsocksRConsole \
     /usr/local/sbin/brookConsole \
-    /usr/local/sbin/shadowsocksLibevConsole 
+    /usr/local/sbin/trojanConsole \
+    /usr/local/sbin/shadowsocksLibevConsole
 
 # remove unused files
 RUN rm -rf .git .gitignore doc

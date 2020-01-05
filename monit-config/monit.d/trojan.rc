@@ -1,0 +1,3 @@
+check process trojan with MATCHING "^.*trojan.*c.*$"
+    start program = "/usr/local/sbin/trojanConsole start" with timeout 30 seconds
+    stop program = "/usr/local/sbin/trojanConsole stop"
