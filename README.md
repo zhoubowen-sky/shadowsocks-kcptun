@@ -13,7 +13,8 @@ An alpine-based docker image with shadowsocks + kcptun, brook trojan and shadows
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
-  `docker run --privileged --restart=always -tid -p 10000:10000 -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 10003:10003 -p 4000:4000/udp -p 4000:4000/tcp -p 443:443 zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  `docker run --privileged --restart=always -tid -p 10000:10000 -p 4000:4000/udp -p 4000:4000/tcp -p 443:443 zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  `docker run --privileged --restart=always -tid -p 10000:10000 -p 10001:10001 -p 10002:10002/tcp -p 10002:10002/udp -p 4000:4000/udp -p 4000:4000/tcp -p 443:443 zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
   
 - 5、Emmmmm...<br>
   Now the server is finished. You can access Google through ss, ssr or brook clients, here are parameters for these clients.
@@ -95,8 +96,8 @@ BROOK参数名 | 参数取值
 trojan | 443
 kcptun | 4000
 shadowsocks-libev | 10000
-shadowsocksr | 10001
-brook | 10002
+<del>shadowsocksr | <del>10001
+<del>brook | <del>10002
 
 ## References
 - 1、https://github.com/xtaci/kcptun
