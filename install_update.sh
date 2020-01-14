@@ -30,7 +30,7 @@ docker pull zhoubowen123/shadowsocks-kcptun
 sleep 1
 
 # 删除 docker 多余容器
-docker ps -a | grep 10000 | awk '{print $1}' | xargs docker rm -f
+docker ps -a | grep 4000 | awk '{print $1}' | xargs docker rm -f
 sleep 1
 
 # 删除 docker 多余镜像
