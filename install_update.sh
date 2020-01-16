@@ -38,4 +38,4 @@ docker images | grep zhoubowen123 | grep none | awk '{print $3}' | xargs docker 
 sleep 1
 
 # 创建 docker 容器
-docker run --privileged --restart=always -tid -p 4000:4000/udp -p 4000:4000/tcp -p 443:443/udp -p 443:443/tcp zhoubowen123/shadowsocks-kcptun /sbin/init
+docker run --privileged --restart=always -tid -p 443:443/udp -p 443:443/tcp zhoubowen123/shadowsocks-kcptun /sbin/init
