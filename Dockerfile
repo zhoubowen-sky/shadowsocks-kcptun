@@ -23,6 +23,7 @@ FROM alpine:3.11.2
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
+ENV TROJAN_URL=https://github.com/trojan-gfw/trojan.git
 
 # workspace for app
 WORKDIR /opt
@@ -37,7 +38,7 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         mariadb-connector-c-dev \
         git \
-    && git clone https://github.com/trojan-gfw/trojan.git \
+    && git clone ${TROJAN_URL} \
     && (cd trojan && cmake . && make -j $(nproc) && strip -s trojan \
     && mv trojan /usr/local/sbin) \
     && rm -rf trojan \
