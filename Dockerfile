@@ -1,13 +1,13 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.13.5 AS build
+FROM golang:1.13.7 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200103/kcptun-linux-amd64-20200103.tar.gz
-ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200102/brook
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200201/kcptun-linux-amd64-20200201.tar.gz
+ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200201/brook
 
 # download kcptun binary file
 RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
