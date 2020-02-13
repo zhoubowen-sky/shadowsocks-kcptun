@@ -19,7 +19,7 @@
             "http/1.1",
             "h2"
         ],
-        "reuse_session": true,
+        "reuse_session": false,
         "session_ticket": false,
         "session_timeout": 600,
         "plain_http_response": "",
