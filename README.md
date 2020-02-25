@@ -94,7 +94,7 @@ BROOK参数名 | 参数取值
 应用名称 | 所用端口
 :-: | :-:
 trojan | 443
-<del>kcptun | <del>4000
+kcptun | 4000
 <del>shadowsocks-libev | <del>10000
 <del>shadowsocksr | <del>10001
 <del>brook | <del>10002
