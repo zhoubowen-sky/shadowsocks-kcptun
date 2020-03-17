@@ -6,13 +6,21 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 RPATH=`realpath $0 | xargs dirname`
 
 # 设置服务名称
-SVRNAME="ss-local"
-SVRBIN=/usr/bin/${SVRNAME}
+SVRNAME="trojan"
+SVRBIN=/usr/local/sbin/${SVRNAME}
 
 USAGE="Usage: $0 {start|stop|restart}"
+if [[ $# -ne 1 ]]; then
+	echo $USAGE
+	exit 1
+fi
 
-PARAMS="-c /etc/ss_local.json"
-DAEMON="start-stop-daemon --start --background --pidfile /tmp/${SVRNAME}.pid --exec $SVRBIN -- $PARAMS"
+SVRCONF="-c /etc/trojan_client.json"
+DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- $SVRCONF"
+if [[ ! -e $SVRCONF ]]; then
+	echo "$SVRCONF is not exist"
+	exit 1
+fi
 
 do_start()
 {
