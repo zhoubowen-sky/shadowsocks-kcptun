@@ -93,19 +93,16 @@ RUN cp -rf script/kcptun.json /etc/ \
     && cp -rf script/shadowsocks.json /etc/ \
     && cp -rf script/shadowsocksr.json /etc/ \
     && cp -rf script/trojan_server.json /etc/ \
-    && cp -rf script/trojan_client.json /etc/ \
     && cp -rf script/kcptunConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksRConsole /usr/local/sbin/ \
     && cp -rf script/shadowsocksLibevConsole /usr/local/sbin/ \
     && cp -rf script/brookConsole /usr/local/sbin/ \
     && cp -rf script/trojanConsole /usr/local/sbin/ \
-    && cp -rf script/trojanClientConsole /usr/local/sbin/ \
     && chmod a+x /usr/local/sbin/kcptunConsole \
     /usr/local/sbin/shadowsocksRConsole \
     /usr/local/sbin/brookConsole \
     /usr/local/sbin/trojanConsole \
-    /usr/local/sbin/shadowsocksLibevConsole \
-    /usr/local/sbin/trojanClientConsole
+    /usr/local/sbin/shadowsocksLibevConsole 
 
 # remove unused files
 RUN rm -rf .git .gitignore doc
