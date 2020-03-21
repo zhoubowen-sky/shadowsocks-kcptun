@@ -1,3 +1,3 @@
 check process brook with MATCHING "^.*brook.*listen.*$"
-    start program = "/usr/local/sbin/brookConsole start" with timeout 30 seconds
-    stop program = "/usr/local/sbin/brookConsole stop"
+    start program = "/opt/script/brookConsole start" with timeout 30 seconds
+    stop program = "/opt/script/brookConsole stop"

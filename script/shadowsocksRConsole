@@ -11,7 +11,7 @@ SVRBIN=/usr/local/sbin/shadowsocksr/shadowsocks/${SVRNAME}
 
 USAGE="Usage: $0 {start|stop|restart}"
 
-PARAMS="-c /etc/shadowsocksr.json "
+PARAMS="-c /opt/script/shadowsocksr.json "
 DAEMON="start-stop-daemon --start --background --pidfile /tmp/${SVRNAME}.pid --exec $SVRBIN -- $PARAMS"
 
 do_start()
