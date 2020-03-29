@@ -6,7 +6,7 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # env
 ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200226/kcptun-linux-amd64-20200226.tar.gz
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200201/kcptun-linux-amd64-20200201.tar.gz
 ENV BROOK_URL=https://github.com/txthinking/brook/releases/download/v20200201/brook
 
 # download kcptun binary file
