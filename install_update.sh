@@ -2,7 +2,7 @@
 
 # 用途:安装或更新服务信息
 # 日期:2020-01-04
-# 作者:周博文
+# 作者:zhoubowen.sky@gmail.com
 
 LINE=" ====================== "
 
@@ -46,4 +46,4 @@ git clone https://github.com/zhoubowen-sky/shadowsocks-kcptun.git
 cp -rf /shadowsocks-kcptun/script /opt
 
 # 创建 docker 容器
-docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init
+docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init
