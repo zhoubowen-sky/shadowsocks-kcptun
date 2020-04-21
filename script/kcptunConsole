@@ -15,7 +15,7 @@ if [[ $# -ne 1 ]]; then
 	exit 1
 fi
 
-SVRCONF="/opt/script/kcptun.json"
+SVRCONF="/opt/script/kcptun_server.json"
 DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- -c=$SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
 	echo "$SVRCONF is not exist"
