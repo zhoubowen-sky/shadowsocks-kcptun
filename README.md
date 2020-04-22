@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, brook trojan and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, brook, trojan and shadowsocksr for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -13,12 +13,18 @@ An alpine-based docker image with shadowsocks + kcptun, brook trojan and shadows
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
+  Open trojan and shadowsocks + kcptun:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  Open trojan, shadowsocks and shadowsocks + kcptun:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  Open trojan, shadowsocks, shadowsocks + kcptun, brook and ssr:<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+- 5、Upload SSL certificate to server<br>
+  Upload your SSL cert files to server.
   
   
 - 5、Emmmmm...<br>
-  Now the server is finished. You can access Google through ss, ssr or brook clients, here are parameters for these clients.
+  Now the server is finished. You can access Google through ss, ssr, trojan or brook clients, here are parameters for these clients.
 
 ## Default parameters for client
 ### Trojan
@@ -96,9 +102,9 @@ BROOK参数名 | 参数取值
 :-: | :-:
 trojan | 443
 kcptun | 4000
-<del>shadowsocks-libev | <del>10000
-<del>shadowsocksr | <del>10001
-<del>brook | <del>10002
+shadowsocks-libev | 10000
+shadowsocksr | 10001
+brook | 10002
 
 ## References
 - 1、https://github.com/xtaci/kcptun
