@@ -14,11 +14,11 @@ An alpine-based docker image with shadowsocks + kcptun, brook, trojan, v2ray and
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
   Open v2ray and shadowsocks + kcptun:<br>
-  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
   Open v2ray, trojan, shadowsocks and shadowsocks + kcptun:<br>
-  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
   Open v2ray, trojan, shadowsocks, shadowsocks + kcptun, brook and ssr:<br>
-  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
 - 5、Upload SSL certificate to server<br>
   Upload your SSL cert files to server.
   
