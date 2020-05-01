@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, brook, trojan and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, brook, trojan, v2ray and shadowsocksr for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -13,12 +13,12 @@ An alpine-based docker image with shadowsocks + kcptun, brook, trojan and shadow
 - 3、Pull this image<br>
    `docker pull zhoubowen123/shadowsocks-kcptun`
 - 4、Create a container<br>
-  Open trojan and shadowsocks + kcptun:<br>
+  Open v2ray and shadowsocks + kcptun:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
-  Open trojan, shadowsocks and shadowsocks + kcptun:<br>
-  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
-  Open trojan, shadowsocks, shadowsocks + kcptun, brook and ssr:<br>
-  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  Open v2ray, trojan, shadowsocks and shadowsocks + kcptun:<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
+  Open v2ray, trojan, shadowsocks, shadowsocks + kcptun, brook and ssr:<br>
+  `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
 - 5、Upload SSL certificate to server<br>
   Upload your SSL cert files to server.
   
@@ -95,6 +95,8 @@ BROOK参数名 | 参数取值
 - [kcptun](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
 - [shadowsocks](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
 - [shadowsocksr](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocksr.json)
+- [trojan](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/trojan_server.json)
+- [v2ray](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/v2ray_server.json)
 
 ## 相关端口使用情况
 
@@ -106,7 +108,6 @@ kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
 brook | 10002
-v2ray+ws | 10003
 
 ## References
 - 1、https://github.com/xtaci/kcptun
@@ -114,3 +115,4 @@ v2ray+ws | 10003
 - 3、https://github.com/txthinking/brook
 - 4、https://github.com/shadowsocks/shadowsocks-libev
 - 5、https://github.com/trojan-gfw/trojan
+- 6、https://github.com/v2ray/v2ray-core
