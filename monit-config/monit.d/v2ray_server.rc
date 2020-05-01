@@ -1,0 +1,3 @@
+check process v2ray with MATCHING "^.*v2ray_server.*$"
+    start program = "/opt/script/v2rayConsole start" with timeout 30 seconds
+    stop program = "/opt/script/v2rayConsole stop"

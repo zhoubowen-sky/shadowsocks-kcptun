@@ -1,0 +1,41 @@
+{
+	"inbounds": [
+		{
+			"port": 10003,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+				"clients": [
+					{
+						"id": "ee14b035-1899-4fcf-aab2-f6c9ec54b588",
+						"alterId": 64
+                    },
+                    {
+						"id": "9c9292d5-473f-4f10-9df2-00a69cab44bc",
+						"alterId": 64
+                    },
+                    {
+						"id": "e1f273c2-72c9-4624-ba88-09c15ab1b744",
+						"alterId": 64
+					},
+                    {
+						"id": "0a00dbdf-4f74-4c1a-aee5-155a2c2fb747",
+						"alterId": 64
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "/passgfw"
+				}
+			}
+		}
+	],
+	"outbounds": [
+		{
+			"protocol": "freedom",
+			"settings": {}
+		}
+	]
+}

@@ -1,6 +1,6 @@
-#################
-## BUILD STAGE ##
-#################
+##################
+## BUILD STAGE1 ##
+##################
 FROM golang:1.14.2 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
@@ -16,10 +16,21 @@ RUN cd /go/bin && wget ${BROOK_URL} && chmod a+x brook
 # download shadowsocksr files
 RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
 
+##################
+## BUILD STAGE2 ##
+##################
+FROM ubuntu:latest as builder
+
+RUN apt-get update
+RUN apt-get install curl -y
+RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
+RUN chmod +x /tmp/go.sh
+RUN /tmp/go.sh
+
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM alpine:3.11.3
+FROM alpine:3.11.6
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
@@ -30,7 +41,7 @@ WORKDIR /opt
 ADD . .
 
 RUN mkdir -p /usr/local/sbin
-# build trojan file
+####################### build trojan file #######################
 RUN apk add --no-cache --virtual .build-deps \
         build-base \
         cmake \
@@ -53,8 +64,8 @@ RUN apk add --no-cache --virtual .build-deps \
 # alpine update
 RUN apk --no-cache update && apk --no-cache upgrade
 # add start-stop-daemon and python runtime
-RUN apk --no-cache add monit openrc python
-# build shadowsocks-libev binary
+RUN apk --no-cache add monit openrc python nginx
+####################### build shadowsocks-libev binary #######################
 RUN apk add --no-cache --virtual .build-deps \
     autoconf \
     automake \
@@ -83,13 +94,21 @@ RUN apk add --no-cache --virtual .build-deps \
       | sort -u) \
     && rm -rf /opt/shadowsocks-libev/
 
+####################### build v2ray binary #######################
+COPY --from=builder /usr/bin/v2ray/v2ray /usr/local/sbin/v2ray/
+COPY --from=builder /usr/bin/v2ray/v2ctl /usr/local/sbin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/local/sbin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/local/sbin/v2ray/
+
 # copy shadowsocks brook shadowsocksr and kcptun binary file from build stage
 COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
 COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
 COPY --from=build /go/bin/brook           /usr/local/sbin/brook
 
 # copy shadowsocks shadowsocksr kcptun and trojan configuration files
-RUN cd /opt/script && chmod a+x *Console
+RUN cd /opt/script && chmod a+x *Console 
+# copy nginx configuration files
+RUN cp -rf /opt/script/nginx/nginx.conf /etc/nginx
 
 # remove unused files
 RUN rm -rf .git .gitignore doc

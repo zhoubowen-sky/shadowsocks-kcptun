@@ -100,11 +100,13 @@ BROOK参数名 | 参数取值
 
 应用名称 | 所用端口
 :-: | :-:
-trojan | 443
+trojan | 444
+v2ray+ws+tls+nginx | 443+80
 kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
 brook | 10002
+v2ray+ws | 10003
 
 ## References
 - 1、https://github.com/xtaci/kcptun
