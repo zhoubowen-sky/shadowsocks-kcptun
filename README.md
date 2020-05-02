@@ -69,6 +69,17 @@ BROOK参数名 | 参数取值
 端口(port) | 10002
 密码(passwd) | qazwsxedc
 
+### V2ray parameter
+V2RAY参数名 | 参数取值
+-: | :-
+服务器地址(ip) | 代理服务器IP
+Nginx端口(port) | 443
+V2ray端口(port) | 10003
+ID(uuid) | 见配置文件
+AlterId | 见配置文件
+StreamSettings | websocket
+WebsocketPath | /ray
+
 ## Open bbr
  To be continued ... <br>
  For [CentOS7](https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7) ...
@@ -102,8 +113,8 @@ BROOK参数名 | 参数取值
 
 应用名称 | 所用端口
 :-: | :-:
-trojan | 444
 v2ray+ws+tls+nginx | 443+80
+trojan | 444
 kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
