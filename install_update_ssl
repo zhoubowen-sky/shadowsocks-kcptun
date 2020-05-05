@@ -18,5 +18,5 @@ sleep 1
 acme.sh --install-cert -d biutefor.icu --key-file /opt/script/mydomain_no3w.key --fullchain-file /opt/script/mydomain_no3w.pem --reloadcmd  "service nginx force-reload"
 
 # 5 restart docker container
-docker restart c1ab3fca3951
+docker restart passgfw
 
