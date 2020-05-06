@@ -47,4 +47,8 @@ mkdir -p /opt/script/
 cp -rf /shadowsocks-kcptun/script/* /opt/script/
 
 # 创建 docker 容器
-docker run --privileged --name=passgfw  --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p zhoubowen123/shadowsocks-kcptun /sbin/init
+docker run --privileged --name=passgfw  --restart=always -tid \
+ -v /opt/script:/opt/script \
+ -p 80:80/udp -p 80:80/tcp \
+ -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp \
+ zhoubowen123/shadowsocks-kcptun /sbin/init
