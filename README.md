@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -52,16 +52,6 @@ SHADOWSOCKS参数名 | 参数取值
 密码(passwd) | qazwsxedc
 加密方式(encrypt) | aes-256-gcm
 
-### ShadowsocksR parameter
-SHADOWSOCKSR参数名 | 参数取值
--: | :-
-服务器地址(ip) | 代理服务器IP
-端口(port) | 10001
-密码(passwd) | qazwsxedc
-加密方式(encrypt) | aes-256-cfb
-加密协议(protocol) | auth_aes128_md5
-混淆方式(obfs) | tls1.2_ticket_auth
-
 ### V2ray parameter
 V2RAY参数名 | 参数取值
 -: | :-
@@ -96,7 +86,6 @@ WebsocketPath | /ray
 ## Server configuration information
 - [kcptun](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
 - [shadowsocks](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
-- [shadowsocksr](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocksr.json)
 - [trojan](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/trojan_server.json)
 - [v2ray](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/v2ray_server.json)
 
@@ -108,11 +97,9 @@ v2ray+ws+tls+nginx | 443+80
 trojan | 444
 kcptun | 4000
 shadowsocks-libev | 10000
-shadowsocksr | 10001
 
 ## References
 - 1、https://github.com/xtaci/kcptun
-- 2、https://github.com/shadowsocksrr/shadowsocksr
 - 4、https://github.com/shadowsocks/shadowsocks-libev
 - 5、https://github.com/trojan-gfw/trojan
 - 6、https://github.com/v2ray/v2ray-core
