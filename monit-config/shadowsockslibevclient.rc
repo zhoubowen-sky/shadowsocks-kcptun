@@ -1,3 +1,0 @@
-check process shadowsockslibevclient with MATCHING "^.*ss-local.*$"
-    start program = "/opt/script/shadowsocksLibevClientConsole start" with timeout 30 seconds
-    stop program = "/opt/script/shadowsocksLibevClientConsole stop"

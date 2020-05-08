@@ -15,7 +15,8 @@ if [[ $# -ne 1 ]]; then
 	exit 1
 fi
 
-SVRCONF="-c /etc/nginx/nginx.conf"
+SVRCONF="-c /opt/script/nginx/nginx.conf"
+#SVRCONF="-c /etc/nginx/nginx.conf"
 DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- $SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
 	echo "$SVRCONF is not exist"

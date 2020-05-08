@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, brook, trojan, v2ray and shadowsocksr for crossing the GFW.
+An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray and shadowsocksr for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -17,14 +17,14 @@ An alpine-based docker image with shadowsocks + kcptun, brook, trojan, v2ray and
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 4000:4000/udp -p 4000:4000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
   Open v2ray, trojan, shadowsocks and shadowsocks + kcptun:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
-  Open v2ray, trojan, shadowsocks, shadowsocks + kcptun, brook and ssr:<br>
+  Open v2ray, trojan, shadowsocks, shadowsocks + kcptun and ssr:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp -p 4000:4000/udp -p 4000:4000/tcp -p 10000:10000/udp -p 10000:10000/tcp -p 10001:10001/udp -p 10001:10001/tcp -p 10002:10002/udp -p 10002:10002/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
 - 5、Upload SSL certificate to server<br>
   Upload your SSL cert files to server.
   
   
 - 5、Emmmmm...<br>
-  Now the server is finished. You can access Google through ss, ssr, trojan or brook clients, here are parameters for these clients.
+  Now the server is finished. You can access Google through ss, ssr, trojan clients, here are parameters for these clients.
 
 ## Default parameters for client
 ### Trojan
@@ -62,13 +62,6 @@ SHADOWSOCKSR参数名 | 参数取值
 加密协议(protocol) | auth_aes128_md5
 混淆方式(obfs) | tls1.2_ticket_auth
 
-### Brook parameter
-BROOK参数名 | 参数取值
--: | :-
-服务器地址(ip) | 代理服务器IP
-端口(port) | 10002
-密码(passwd) | qazwsxedc
-
 ### V2ray parameter
 V2RAY参数名 | 参数取值
 -: | :-
@@ -85,8 +78,6 @@ WebsocketPath | /ray
  For [CentOS7](https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7) ...
 
 ## Examples
-### Brook
-![brook-mac](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/brook-mac.png)
 
 ### Ss with kcptun
   kcptun plugin option (for mac):<br>
@@ -118,12 +109,10 @@ trojan | 444
 kcptun | 4000
 shadowsocks-libev | 10000
 shadowsocksr | 10001
-brook | 10002
 
 ## References
 - 1、https://github.com/xtaci/kcptun
 - 2、https://github.com/shadowsocksrr/shadowsocksr
-- 3、https://github.com/txthinking/brook
 - 4、https://github.com/shadowsocks/shadowsocks-libev
 - 5、https://github.com/trojan-gfw/trojan
 - 6、https://github.com/v2ray/v2ray-core
