@@ -1,25 +1,16 @@
 ##################
-## BUILD STAGE1 ##
-##################
-FROM golang:1.14.2 AS build
-LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
-
-# env
-ENV SSR=https://github.com/zhoubowen-sky/shadowsocksr.git
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
-
-# download kcptun binary file
-RUN cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
-# download shadowsocksr files
-RUN git clone ${SSR} && cd /go/shadowsocksr && bash initcfg.sh && rm -rf .git
-
-##################
-## BUILD STAGE2 ##
+## BUILD STAGE ##
 ##################
 FROM ubuntu:latest as builder
 
+# env
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
+
 RUN apt-get update
-RUN apt-get install curl -y
+RUN apt-get install curl wget -y
+# download kcptun binary file
+RUN mkdir -p /go/bin && cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 server
+
 RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
 RUN chmod +x /tmp/go.sh
 RUN /tmp/go.sh
@@ -96,12 +87,10 @@ COPY --from=builder /usr/bin/v2ray/v2ray /usr/local/sbin/v2ray/
 COPY --from=builder /usr/bin/v2ray/v2ctl /usr/local/sbin/v2ray/
 COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/local/sbin/v2ray/
 COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/local/sbin/v2ray/
+# copy shadowsocks and kcptun binary file from build stage
+COPY --from=builder /go/bin/server          /usr/local/sbin/kcptun_server
 
-# copy shadowsocks shadowsocksr and kcptun binary file from build stage
-COPY --from=build /go/bin/server          /usr/local/sbin/kcptun_server
-COPY --from=build /go/shadowsocksr        /usr/local/sbin/shadowsocksr
-
-# copy shadowsocks shadowsocksr kcptun and trojan configuration files
+# copy shadowsocks kcptun and trojan configuration files
 RUN cd /opt/script && chmod a+x *Console
 
 # remove unused files
