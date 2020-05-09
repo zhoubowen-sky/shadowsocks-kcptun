@@ -2,20 +2,23 @@
 
 # 申请通配符证书
 
-# 1 install acme.sh
+# 1 安装 acme.sh
 curl  https://get.acme.sh | sh
 
-# 2 create acme.sh alias
+# 2 创建 acme.sh alias
 echo 'alias acme.sh=~/.acme.sh/acme.sh' >> /etc/profile
 source /etc/profile
 
-# 3 自动DNS命令
+# 申请证书 自动DNS验证命令
 acme.sh --issue --dns dns_cf -d biutefor.icu -d *.biutefor.icu
-# 手动DNS命令
-#
-acme.sh --renew -d biutefor.icu -d *.biutefor.icu --yes-I-know-dns-manual-mode-enough-go-ahead-please
-slppe 1
-acme.sh --install-cert -d biutefor.icu --key-file /opt/script/mydomain.key --fullchain-file /opt/script/mydomain.pem --reloadcmd  "service nginx force-reload"
+# 申请证书 手动DNS验证命令
+acme.sh --issue -d biutefor.icu -d *.biutefor.icu --yes-I-know-dns-manual-mode-enough-go-ahead-please
+
+# 重新申请证书 
+acme.sh --renew --dns dns_cf -d biutefor.icu -d *.biutefor.icu
+
+# 安装证书
+acme.sh --install-cert -d biutefor.icu --key-file /opt/script/mydomain.key --fullchain-file /opt/script/mydomain.pem
 
 # 5 restart docker container
 docker restart passgfw
