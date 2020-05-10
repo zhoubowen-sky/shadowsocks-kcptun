@@ -65,7 +65,7 @@ COPY --from=builder /usr/bin/ss-server      /usr/bin/
 COPY --from=builder /usr/bin/ss-tunnel      /usr/bin/
 
 # 安装 kcptun
-RUN cd /tmp && wget ${KCPTUN_URL} && tar -xf *.gz && mv server_linux_amd64 /usr/local/sbin/kcptun_server && rm -rf /tmp/*
+RUN mkdir -p /go/bin && cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server
 
 # 安装 v2ray
 RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
