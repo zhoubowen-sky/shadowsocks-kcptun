@@ -11,14 +11,16 @@ ENV TROJAN_URL=https://github.com/trojan-gfw/trojan.git
 WORKDIR /opt
 ADD . .
 
+# 设定时区
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update 
+# 安装基础依赖库
 RUN apt -y install wget curl git gcc build-essential
-    # 安装 trojan 依赖库
+# 安装 trojan 依赖库
 RUN apt -y install cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev
-    # 安装 shadowsocks-libev 依赖库
+# 安装 shadowsocks-libev 依赖库
 RUN apt -y install libpcre3-dev libmbedtls-dev libsodium-dev libc-ares-dev libev-dev 
 
 # 编译 trojan
@@ -45,6 +47,7 @@ ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptu
 WORKDIR /opt
 ADD . .
 
+# 设定时区
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
@@ -70,8 +73,8 @@ RUN mkdir -p /go/bin && cd /go/bin && wget --no-check-certificate ${KCPTUN_URL} 
     && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server
 
 # 安装 v2ray
-RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
-RUN chmod +x /tmp/go.sh && /tmp/go.sh && rm -rf /tmp/go.sh
+RUN wget --no-check-certificate https://install.direct/go.sh
+RUN chmod +x go.sh && ./go.sh && rm -rf ./go.sh
 
 # 安装 monit
 RUN rm -rf /etc/monit.d \
