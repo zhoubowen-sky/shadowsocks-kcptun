@@ -7,7 +7,7 @@ RPATH=`realpath $0 | xargs dirname`
 
 # 设置服务名称
 SVRNAME="v2ray"
-SVRBIN=/usr/local/sbin/v2ray/${SVRNAME}
+SVRBIN=/usr/bin/v2ray/${SVRNAME}
 
 USAGE="Usage: $0 {start|stop|restart}"
 if [[ $# -ne 1 ]]; then
