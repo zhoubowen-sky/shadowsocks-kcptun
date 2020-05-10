@@ -32,7 +32,7 @@ do_start()
 
 do_stop()
 {
-    ps -ef | grep  "nginx" | grep -v "grep" | awk '{print $1}' | while read pid
+    ps -ef | grep  "nginx" | grep -v "grep" | awk '{print $2}' | while read pid
     do
 	echo "PID:" $pid
         kill -9 $pid

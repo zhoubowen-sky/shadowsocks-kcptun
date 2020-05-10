@@ -16,19 +16,25 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update
-RUN apt -y install wget curl git gcc build-essential
+RUN apt -y install --no-install-recommends wget curl git gcc build-essential \
+    # 编译 trojan
+    && cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev \
+    # 编译 ss
+    && libpcre3 libpcre3-dev libmbedtls-dev libtool asciidoc xmlto libev-dev libc-ares-dev automake libsodium-dev \
+    # 安装 nginx
+    && nginx \
+    # 安装 monit
+    && monit
 
 # 安装 kcptun
 RUN cd /tmp && wget ${KCPTUN_URL} && tar -xf *.gz && mv server_linux_amd64 /usr/local/sbin/kcptun_server && rm -rf /tmp/*
 
 # 编译 trojan
-RUN apt -y install cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev
 RUN git clone ${TROJAN_URL} \
     && (cd trojan && cmake . && make && mv trojan /usr/local/sbin) \
     && rm -rf trojan
 
 # 编译 shadowsocks-libev
-RUN apt -y install libpcre3 libpcre3-dev libmbedtls-dev libtool  asciidoc xmlto libev-dev libc-ares-dev automake  libsodium-dev
 RUN git clone ${SS_LIBEV_URL} \
     && (cd shadowsocks-libev \
     && git submodule update --init --recursive \
@@ -42,11 +48,7 @@ RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
 RUN chmod +x /tmp/go.sh
 RUN /tmp/go.sh && rm -rf /tmp/go.sh
 
-# 安装 nginx
-RUN apt install -y nginx
-
 # 安装 monit
-RUN apt install -y monit
 RUN rm -rf /etc/monit.d \
     && cp -rf monit-config/monit.d /etc/ \
     && rm -rf /etc/monitrc \
@@ -58,3 +60,4 @@ RUN rm -rf /etc/monit.d \
 RUN cd /opt/script && chmod a+x *Console
 
 # 启动 monit
+RUN /etc/init.d/monit start
