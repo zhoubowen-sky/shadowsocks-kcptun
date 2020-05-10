@@ -2,7 +2,7 @@
 ##################
 ## BUILD STAGE ##
 ##################
-FROM ubuntu:latest as builder
+FROM ubuntu:16.04 as builder
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
@@ -37,7 +37,7 @@ RUN git clone ${SS_LIBEV_URL} \
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM ubuntu:latest
+FROM ubuntu:16.04
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
