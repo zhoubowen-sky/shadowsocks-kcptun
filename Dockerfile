@@ -24,7 +24,7 @@ RUN apt -y install libpcre3-dev libmbedtls-dev libsodium-dev libc-ares-dev libev
 
 # 编译 trojan
 RUN git clone ${TROJAN_URL} \
-    && cd trojan && cmake . && make && mv trojan /usr/local/sbin
+    && (cd trojan && cmake . && make && mv trojan /usr/local/sbin)
 
 # 编译 shadowsocks-libev
 RUN git clone ${SS_LIBEV_URL} \
