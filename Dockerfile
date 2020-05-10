@@ -24,17 +24,15 @@ RUN apt -y install wget curl git gcc build-essential \
 
 # 编译 trojan
 RUN git clone ${TROJAN_URL} \
-    && (cd trojan && cmake . && make && mv trojan /usr/local/sbin) \
-    && rm -rf trojan
+    && cd trojan && cmake . && make && mv trojan /usr/local/sbin
 
 # 编译 shadowsocks-libev
 RUN git clone ${SS_LIBEV_URL} \
-    && (cd shadowsocks-libev \
+    && cd shadowsocks-libev \
     && git submodule update --init --recursive \
     && ./autogen.sh \
     && ./configure --prefix=/usr --disable-documentation \
-    && make && make install) \
-    && rm -rf shadowsocks-libev
+    && make && make install
 
 
 ######################
