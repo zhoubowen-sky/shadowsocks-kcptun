@@ -48,7 +48,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update 
-RUN apt -y install \
+RUN apt -y install wget \
     # 安装 nginx
     nginx \
     # 安装 monit
