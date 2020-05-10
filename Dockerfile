@@ -6,7 +6,6 @@ FROM ubuntu:latest as builder
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
 ENV TROJAN_URL=https://github.com/trojan-gfw/trojan.git
 
 WORKDIR /opt
@@ -41,6 +40,8 @@ RUN git clone ${SS_LIBEV_URL} \
 FROM ubuntu:latest
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
+
 WORKDIR /opt
 ADD . .
 
@@ -48,7 +49,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update 
-RUN apt -y install wget \
+RUN apt -y install --no-install-recommends wget curl \
     # 安装 nginx
     nginx \
     # 安装 monit
@@ -65,7 +66,8 @@ COPY --from=builder /usr/bin/ss-server      /usr/bin/
 COPY --from=builder /usr/bin/ss-tunnel      /usr/bin/
 
 # 安装 kcptun
-RUN mkdir -p /go/bin && cd /go/bin && wget ${KCPTUN_URL} && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server
+RUN mkdir -p /go/bin && cd /go/bin && wget --no-check-certificate ${KCPTUN_URL} \
+    && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server
 
 # 安装 v2ray
 RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
@@ -82,5 +84,5 @@ RUN rm -rf /etc/monit.d \
 # copy shadowsocks kcptun and trojan configuration files
 RUN cd /opt/script && chmod a+x *Console
 
-# 启动 monit
-RUN /etc/init.d/monit restart
+# 开机启动 monit
+CMD ["/usr/bin/monit", "-c", "/etc/monit/monitrc"]
