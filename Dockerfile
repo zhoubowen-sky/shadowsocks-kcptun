@@ -2,7 +2,7 @@
 ##################
 ## BUILD STAGE ##
 ##################
-FROM ubuntu:16.04 as builder
+FROM ubuntu:latest as builder
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV SS_LIBEV_URL=https://github.com/shadowsocks/shadowsocks-libev.git
