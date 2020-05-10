@@ -12,6 +12,6 @@
 # By default this script does nothing.
 
 # monit
-/bin/systemctl start monit
+monit
 
 exit 0
