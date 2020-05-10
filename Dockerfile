@@ -12,13 +12,13 @@ ENV TROJAN_URL=https://github.com/trojan-gfw/trojan.git
 WORKDIR /opt
 ADD . .
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update && apt -y install wget curl git gcc build-essential \
-    # 编译 trojan 依赖库
+    # 安装 trojan 依赖库
     && cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev \
-    # 编译 ss 依赖库
+    # 安装 shadowsocks-libev 依赖库
     && libpcre3 libpcre3-dev libmbedtls-dev libtool asciidoc xmlto libev-dev libc-ares-dev automake libsodium-dev
 
 # 编译 trojan
@@ -45,8 +45,8 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 WORKDIR /opt
 ADD . .
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update && apt -y install --no-install-recommends \
     # 安装 nginx
@@ -83,4 +83,4 @@ RUN rm -rf /etc/monit.d \
 RUN cd /opt/script && chmod a+x *Console
 
 # 启动 monit
-RUN /etc/init.d/monit start
+RUN /etc/init.d/monit restart
