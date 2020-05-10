@@ -15,7 +15,8 @@ ADD . .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
-RUN apt update && apt -y install wget curl git gcc build-essential \
+RUN apt update 
+RUN apt -y install wget curl git gcc build-essential \
     # 安装 trojan 依赖库
     && cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev \
     # 安装 shadowsocks-libev 依赖库
@@ -48,7 +49,8 @@ ADD . .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
-RUN apt update && apt -y install --no-install-recommends \
+RUN apt update 
+RUN apt -y install --no-install-recommends \
     # 安装 nginx
     && nginx \
     # 安装 monit
