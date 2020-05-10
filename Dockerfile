@@ -50,9 +50,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 RUN apt update 
 RUN apt -y install --no-install-recommends \
     # 安装 nginx
-    && nginx \
+    nginx \
     # 安装 monit
-    && monit
+    monit
 
 # 安装 trojan
 COPY --from=builder /usr/local/sbin/trojan  /usr/local/sbin/trojan
