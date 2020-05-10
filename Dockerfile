@@ -43,6 +43,7 @@ FROM ubuntu:16.04
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
+ENV V2RAY_URL=https://github.com/v2ray/v2ray-core/releases/download/v4.23.1/v2ray-linux-64.zip
 
 WORKDIR /opt
 ADD . .
@@ -52,7 +53,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
 RUN apt update 
-RUN apt -y install --no-install-recommends wget curl \
+RUN apt -y install --no-install-recommends wget curl unzip \
     # 安装 nginx
     nginx \
     # 安装 monit
@@ -73,8 +74,8 @@ RUN mkdir -p /go/bin && cd /go/bin && wget --no-check-certificate ${KCPTUN_URL} 
     && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server
 
 # 安装 v2ray
-RUN wget --no-check-certificate https://install.direct/go.sh
-RUN chmod +x go.sh && ./go.sh && rm -rf ./go.sh
+RUN wget --no-check-certificate ${V2RAY_URL} \ 
+    && unzip v2ray-linux-64.zip -d /usr/bin/v2ray/
 
 # 安装 monit
 RUN rm -rf /etc/monit.d \
