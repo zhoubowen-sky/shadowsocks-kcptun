@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 
@@ -15,9 +15,9 @@ if [[ $# -ne 1 ]]; then
 	exit 1
 fi
 
-SVRCONF="-c /opt/script/nginx/nginx.conf"
+SVRCONF="/opt/script/nginx/nginx.conf"
 #SVRCONF="-c /etc/nginx/nginx.conf"
-DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- $SVRCONF"
+DAEMON="start-stop-daemon --start -m --exec $SVRBIN --pidfile /tmp/${SVRNAME}.pid  --background -- -c $SVRCONF"
 if [[ ! -e $SVRCONF ]]; then
 	echo "$SVRCONF is not exist"
 	exit 1

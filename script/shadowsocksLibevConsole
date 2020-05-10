@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 
@@ -11,8 +11,8 @@ SVRBIN=/usr/bin/${SVRNAME}
 
 USAGE="Usage: $0 {start|stop|restart}"
 
-PARAMS="-c /opt/script/ss_libev_server.json"
-DAEMON="start-stop-daemon --start --background --pidfile /tmp/${SVRNAME}.pid --exec $SVRBIN -- $PARAMS"
+PARAMS="/opt/script/ss_libev_server.json"
+DAEMON="start-stop-daemon --start --background --pidfile /tmp/${SVRNAME}.pid --exec $SVRBIN -- -c $PARAMS"
 
 do_start()
 {
