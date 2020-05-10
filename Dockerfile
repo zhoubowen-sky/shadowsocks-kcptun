@@ -18,9 +18,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 RUN apt update 
 RUN apt -y install wget curl git gcc build-essential \
     # 安装 trojan 依赖库
-    && cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev \
+    cmake libboost-all-dev openssl libssl-dev libmysqlclient-dev \
     # 安装 shadowsocks-libev 依赖库
-    && libpcre3 libpcre3-dev libmbedtls-dev libtool asciidoc xmlto libev-dev libc-ares-dev automake libsodium-dev
+    libpcre3 libpcre3-dev libmbedtls-dev libtool asciidoc xmlto libev-dev libc-ares-dev automake libsodium-dev
 
 # 编译 trojan
 RUN git clone ${TROJAN_URL} \
