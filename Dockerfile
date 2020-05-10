@@ -85,4 +85,4 @@ RUN rm -rf /etc/monit.d \
 RUN cd /opt/script && chmod a+x *Console
 
 # 开机启动 monit
-
+RUN cp -rf script/rc.local /etc/
