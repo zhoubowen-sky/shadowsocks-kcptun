@@ -1,3 +1,3 @@
 check process shadowsocks2 with MATCHING "^.*go-shadowsocks2.*$"
-    start program = "/usr/local/sbin/shadowsocks2Console start" with timeout 30 seconds
-    stop program = "/usr/local/sbin/shadowsocks2Console stop"
+    start program = "/opt/script/shadowsocks2Console start" with timeout 30 seconds
+    stop program = "/opt/script/shadowsocks2Console stop"
