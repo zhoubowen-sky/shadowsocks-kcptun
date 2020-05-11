@@ -12,7 +12,7 @@ RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM ubuntu:16.04
+FROM centos:7
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
@@ -26,12 +26,14 @@ ADD . .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone
 
-RUN apt update 
-RUN apt -y install --no-install-recommends wget curl unzip xz-utils \
+RUN yum -y update \
+    && yum -y install wget curl unzip xz-utils \
     # 安装 nginx
-    nginx \
+    && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
+    && yum -y install nginx \
     # 安装 monit
-    monit
+    && yum -y install epel-release \
+    && yum -y install monit
 
 # 安装 trojan
 RUN wget --no-check-certificate ${TROJAN_BIN_URL} \
@@ -56,16 +58,13 @@ RUN rm -rf /etc/monit.d \
     && rm -rf /etc/monitrc \
     && cp -rf monit-config/monitrc /etc/ \
     && chown root:root /etc/monitrc \
-    && chmod 0700 /etc/monitrc
+    && chmod 0700 /etc/monitrc \
+    # 安装 start-stop-daemon 
+    && chmod +x script/start-stop-daemon \
+    && cp script/start-stop-daemon /usr/bin/start-stop-daemon
 
 # copy shadowsocks kcptun and trojan configuration files
 RUN cd /opt/script && chmod a+x *Console
 
 # 开机启动 monit
-RUN cp -rf script/rc.local /etc/ \
-    # 删除 monit 系统设定的开机启动
-    && mv /etc/rc5.d/S02monit /etc/rc5.d/K02monit \
-    # 删除 nginx 开机启动
-    && mv /etc/rc5.d/S01nginx /etc/rc5.d/K01nginx \
-    # 删除多余文件
-    && rm -rf .git doc trojan* v2ray*
+RUN  rm -rf .git doc trojan* v2ray*
