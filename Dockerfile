@@ -63,6 +63,9 @@ RUN cd /opt/script && chmod a+x *Console
 
 # 开机启动 monit
 RUN cp -rf script/rc.local /etc/ \
-    && cp -rf script/nginx/nginx.conf /lib/systemd/system/nginx.service \
+    # 删除 monit 系统设定的开机启动
+    && mv /etc/rc5.d/S02monit /etc/rc5.d/K02monit \
+    # 删除 nginx 开机启动
+    && mv /etc/rc5.d/S01nginx /etc/rc5.d/K01nginx \
     # 删除多余文件
     && rm -rf .git doc trojan* v2ray*
