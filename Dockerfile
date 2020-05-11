@@ -63,4 +63,6 @@ RUN cd /opt/script && chmod a+x *Console
 
 # 开机启动 monit
 RUN cp -rf script/rc.local /etc/ \
-    && cp -rf script/nginx/nginx.conf /lib/systemd/system/nginx.service
+    && cp -rf script/nginx/nginx.conf /lib/systemd/system/nginx.service \
+    # 删除多余文件
+    && rm -rf .git doc trojan* v2ray*
