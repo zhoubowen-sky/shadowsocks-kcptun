@@ -1,4 +1,7 @@
 
+#################
+## BUILD STAGE ##
+#################
 FROM golang:1.12.5 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
@@ -6,7 +9,6 @@ LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 # build go-shadowsocks2 binary file
 RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
     && go install -ldflags '-w -s' -tags netgo -v github.com/shadowsocks/go-shadowsocks2
-
 
 
 ######################
@@ -63,8 +65,11 @@ RUN rm -rf /etc/monit.d \
     && chmod +x script/start-stop-daemon \
     && cp script/start-stop-daemon /usr/bin/start-stop-daemon
 
-# copy shadowsocks kcptun and trojan configuration files
-RUN cd /opt/script && chmod a+x *Console
-
 # 开机启动 monit
-RUN  rm -rf .git doc trojan* v2ray*
+RUN  /usr/bin/systemctl enable monit \
+    # 删除多余文件
+    && rm -rf .git doc trojan* v2ray* \
+    # 给脚本可执行权限
+    && cd /opt/script && chmod a+x *Console \
+    # 删除缓存
+    && yum clean all 
