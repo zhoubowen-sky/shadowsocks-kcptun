@@ -96,10 +96,10 @@ WebsocketPath | /ray
 v2ray+ws+tls+nginx | 443+80
 trojan | 444
 kcptun | 4000
-shadowsocks-libev | 10000
+shadowsocks-go2 | 10000
 
 ## References
 - 1、https://github.com/xtaci/kcptun
-- 4、https://github.com/shadowsocks/shadowsocks-libev
-- 5、https://github.com/trojan-gfw/trojan
-- 6、https://github.com/v2ray/v2ray-core
+- 2、https://github.com/shadowsocks/go-shadowsocks2
+- 3、https://github.com/trojan-gfw/trojan
+- 4、https://github.com/v2ray/v2ray-core
