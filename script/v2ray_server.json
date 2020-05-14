@@ -6,6 +6,13 @@
     },
     "inbounds": [
         {
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            },
             "port": 10001,
             "listen": "127.0.0.1",
             "protocol": "vmess",
@@ -41,6 +48,23 @@
         {
             "protocol": "freedom",
             "settings": {}
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {},
+            "tag": "block"
         }
-    ]
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "block",
+                "protocol": [
+                    "bittorrent"
+                ]
+            }
+        ]
+    }
 }
