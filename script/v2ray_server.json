@@ -1,9 +1,4 @@
 {
-    "log": {
-        "access": "/opt/script/v2ray/access.log",
-        "error": "/opt/script/v2ray/error.log",
-        "loglevel": "warning"
-    },
     "inbounds": [
         {
             "sniffing": {
@@ -20,37 +15,51 @@
                 "clients": [
                     {
                         "id": "ee14b035-1899-4fcf-aab2-f6c9ec54b588",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "9c9292d5-473f-4f10-9df2-00a69cab44bc",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "e1f273c2-72c9-4624-ba88-09c15ab1b744",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "0a00dbdf-4f74-4c1a-aee5-155a2c2fb747",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
-
-                    
                     {
                         "id": "2583b3bc-826a-4252-a074-729855d17482",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "2d7c9fd2-2947-4509-969c-20378f6faa3c",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "0e3b1c9b-a6f3-49d4-9b60-9f0072727e67",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     },
                     {
                         "id": "71b2655e-07d9-4dad-a770-a2b08275142b",
-                        "alterId": 64
+                        "alterId": 64,
+                        "security": "auto",
+                        "level": 0
                     }
                 ]
             },
@@ -84,5 +93,27 @@
                 ]
             }
         ]
+    },
+    "log": {
+        "access": "/opt/script/v2ray/access.log",
+        "error": "/opt/script/v2ray/error.log",
+        "loglevel": "warning"
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": 6,
+                "connIdle": 300,
+                "uplinkOnly": 4,
+                "downlinkOnly": 8,
+                "statsUserUplink": false,
+                "statsUserDownlink": false,
+                "bufferSize": 10240
+            }
+        },
+        "system": {
+            "statsInboundUplink": false,
+            "statsInboundDownlink": false
+        }
     }
 }
