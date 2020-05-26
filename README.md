@@ -1,5 +1,5 @@
 # Shadowsocks-kcptun
-An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray for crossing the GFW.
+An CentOS-based docker image with shadowsocks + kcptun, trojan, v2ray for crossing the GFW.
 
 ## Step for usage
 - 1、Prepare a cloud server with CentOS7 for building proxy services.(vultr, do or bwh...)
@@ -20,7 +20,7 @@ An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray for crossi
   Open v2ray, trojan:<br>
   `docker run --privileged --restart=always -tid -v /opt/script:/opt/script -p 80:80 -p 443:443/udp -p 443:443/tcp -p 444:444/udp -p 444:444/tcp zhoubowen123/shadowsocks-kcptun /sbin/init`<br>
 - 5、Upload SSL certificate to server<br>
-  Upload your SSL cert files to server.
+  Upload your SSL cert files to server...
   
   
 - 5、Emmmmm...<br>
@@ -31,7 +31,7 @@ An alpine-based docker image with shadowsocks + kcptun, trojan, v2ray for crossi
 TROJAN参数名 | 参数取值
 -: | :-
 服务器地址(ip) | 代理服务器IP
-端口(port) | 443
+端口(port) | 444
 密码(passwd) | qazwsxedc
 
 ### Kcptun (just for ss port 10000)
