@@ -30,10 +30,10 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 # 安装基础工具
     && yum -y update \
     && yum -y install wget curl unzip xz-utils \
-    # 安装 nginx
+# 安装 nginx
     && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
     && yum -y install nginx \
-    # 安装 monit
+# 安装 monit
     && yum -y install epel-release \
     && yum -y install monit
 
@@ -58,14 +58,14 @@ RUN wget --no-check-certificate ${TROJAN_BIN_URL} \
     && cp -rf monit-config/monitrc /etc/ \
     && chown root:root /etc/monitrc \
     && chmod 0700 /etc/monitrc \
-    # 安装 start-stop-daemon 
+# 安装 start-stop-daemon 
     && chmod +x script/start-stop-daemon \
     && cp script/start-stop-daemon /usr/bin/start-stop-daemon \
 # 设定 monit 开机启动 
     && /usr/bin/systemctl enable monit \
     # 删除多余文件
     && rm -rf .git doc trojan* v2ray* kcptun-linux* client_linux* server_linux* \
-    # 给脚本可执行权限
+# 给脚本可执行权限
     && cd /opt/script && chmod a+x *Console \
     # 删除缓存及无用的软件
     && yum -y remove wget unzip && yum clean all 
