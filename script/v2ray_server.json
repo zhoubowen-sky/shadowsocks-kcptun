@@ -102,13 +102,13 @@
     "policy": {
         "levels": {
             "0": {
-                "handshake": 8,
+                "handshake": 6,
                 "connIdle": 300,
-                "uplinkOnly": 8,
+                "uplinkOnly": 4,
                 "downlinkOnly": 8,
                 "statsUserUplink": false,
                 "statsUserDownlink": false,
-                "bufferSize": 15000
+                "bufferSize": 4096
             }
         },
         "system": {
