@@ -18,7 +18,7 @@ FROM centos:7
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
-ENV V2RAY_URL=https://github.com/v2ray/v2ray-core/releases/download/v4.23.3/v2ray-linux-64.zip
+ENV V2RAY_URL=https://github.com/v2ray/v2ray-core/releases/download/v4.23.4/v2ray-linux-64.zip
 ENV TROJAN_BIN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.15.1/trojan-1.15.1-linux-amd64.tar.xz
 
 WORKDIR /opt
