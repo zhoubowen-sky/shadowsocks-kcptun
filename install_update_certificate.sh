@@ -10,16 +10,16 @@ echo 'alias acme.sh=~/.acme.sh/acme.sh' >> /etc/profile
 source /etc/profile
 
 # 申请证书 自动DNS验证命令
-acme.sh --issue --dns dns_cf -d biutefor.icu -d *.biutefor.icu
+acme.sh --issue --dns dns_cf -d biutefor.icu -d *.biutefor.icu --force
 # 申请证书 手动DNS验证命令
-acme.sh --issue -d biutefor.icu -d *.biutefor.icu --yes-I-know-dns-manual-mode-enough-go-ahead-please
+#acme.sh --issue -d biutefor.icu -d *.biutefor.icu --yes-I-know-dns-manual-mode-enough-go-ahead-please
 
 # 重新申请证书 
-acme.sh --renew --dns dns_cf -d biutefor.icu -d *.biutefor.icu
+acme.sh --renew --dns dns_cf -d biutefor.icu -d *.biutefor.icu --force 
 
 # 安装证书
 acme.sh --install-cert -d biutefor.icu --key-file /opt/script/mydomain.key --fullchain-file /opt/script/mydomain.pem --reloadcmd "systemctl restart docker"
 
 # 5 restart docker container
-docker restart passgfw
+#docker restart passgfw
 
