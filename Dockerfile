@@ -2,7 +2,7 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.14.2 AS build
+FROM golang:1.15 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
@@ -17,8 +17,8 @@ RUN go get -d -v github.com/shadowsocks/go-shadowsocks2 \
 FROM centos:7
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
-ENV V2RAY_URL=https://github.com/v2ray/v2ray-core/releases/download/v4.26.0/v2ray-linux-64.zip
+ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20200701/kcptun-linux-amd64-20200701.tar.gz
+ENV V2RAY_URL=https://github.com/v2ray/v2ray-core/releases/download/v4.27.0/v2ray-linux-64.zip
 ENV TROJAN_BIN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.16.0/trojan-1.16.0-linux-amd64.tar.xz
 
 WORKDIR /opt
