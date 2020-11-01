@@ -70,8 +70,8 @@ WebsocketPath | /ray
 ![ss-kcp-win](https://raw.githubusercontent.com/zhoubowen-sky/shadowsocks-kcptun/master/doc/ss-kcp-win.png)
 
 ## 容器内服务端的配置文件
-- [kcptun配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun.json)
-- [shadowsocks配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks.json)
+- [kcptun配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/kcptun_server.json)
+- [shadowsocks配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/shadowsocks2Console)
 - [trojan配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/trojan_server.json)
 - [v2ray配置文件](https://github.com/zhoubowen-sky/shadowsocks-kcptun/blob/master/script/v2ray_server.json)
 
