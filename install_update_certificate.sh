@@ -18,7 +18,7 @@ acme.sh --issue --dns dns_cf -d biutefor.icu -d *.biutefor.icu --force
 acme.sh --renew --dns dns_cf -d biutefor.icu -d *.biutefor.icu --force 
 
 # 安装证书
-acme.sh --install-cert -d biutefor.icu -d *.biutefor.icy --key-file /opt/script/mydomain.key --fullchain-file /opt/script/mydomain.pem --reloadcmd "systemctl restart docker"
+acme.sh --install-cert -d biutefor.icu -d *.biutefor.icu --key-file /opt/script/mydomain.key --fullchain-file /opt/script/mydomain.pem --reloadcmd "systemctl restart docker"
 
 # 5 restart docker container
 #docker restart passgfw
