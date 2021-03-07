@@ -69,6 +69,38 @@
                     "path": "/biutefor.icu"
                 }
             }
+        },
+        
+        {
+            "port": 444,
+            "protocol": "trojan",
+            "settings": {
+                "clients": [
+                    {
+                        "password":"qazwsxedc",
+                        "email": "account1@biutefor.icu"
+                    },
+                    {
+                        "password":"rfvtgbyhn",
+                        "email": "account2@biutefor.icu"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/opt/script/mydomain.pem",
+                            "keyFile": "/opt/script/mydomain.key"
+                        }
+                    ]
+                }
+            }
         }
     ],
     "outbounds": [
