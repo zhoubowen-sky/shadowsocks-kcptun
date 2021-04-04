@@ -7,8 +7,8 @@ FROM golang:1.16.3 AS build
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
 # build go-shadowsocks2 binary file
-ENV GO_SS2_URL=github.com/zhoubowen-sky/go-shadowsocks2
-RUN go get -d -v ${GO_SS2_URL} && go install -ldflags '-w -s' -tags netgo -v ${GO_SS2_URL}
+RUN go get -d -v github.com/zhoubowen-sky/go-shadowsocks2 \
+    && go install -ldflags '-w -s' -tags netgo -v github.com/zhoubowen-sky/go-shadowsocks2
 
 
 ######################
