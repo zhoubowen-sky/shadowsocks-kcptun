@@ -2,7 +2,7 @@
 #################
 ## BUILD STAGE ##
 #################
-FROM golang:1.16.3 AS build
+FROM golang:1.15.6 AS build
 
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
