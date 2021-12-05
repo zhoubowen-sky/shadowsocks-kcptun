@@ -11,9 +11,9 @@
   `systemctl start docker`<br>
   `systemctl enable docker`<br>
 - 3、使用本仓库构建本地镜像
-  `docker build github.com/zhoubowen-sky/shadowsocks-kcptun`
+  `docker build github.com/zhoubowen-sky/shadowsocks-kcptun -t v2rayimage`
 - 4、创建对应的容器<br>
-  `docker run --privileged --name=passgfw  --restart=always -tid -v /opt/script:/opt/script  -p 80:80/udp -p 80:80/tcp  -p 443:443/udp -p 443:443/tcp zhoubowen123/shadowsocks-kcptun /usr/sbin/init`
+  `docker run --privileged --name=passgfw  --restart=always -tid -v /opt/script:/opt/script  -p 80:80/udp -p 80:80/tcp  -p 443:443/udp -p 443:443/tcp v2rayimage /usr/sbin/init`
 
 - 5、上传SSL证书<br>
   需申请对应的域名及证书。
