@@ -1,25 +1,11 @@
 
-#################
-## BUILD STAGE ##
-#################
-FROM golang:1.15.6 AS build
-
-LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
-
-# build go-shadowsocks2 binary file
-RUN go get -d -v github.com/zhoubowen-sky/go-shadowsocks2 \
-    && go install -ldflags '-w -s' -tags netgo -v github.com/zhoubowen-sky/go-shadowsocks2
-
-
 ######################
 ## PRODUCTION STAGE ##
 ######################
 FROM centos:7
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-ENV KCPTUN_URL=https://github.com/xtaci/kcptun/releases/download/v20210103/kcptun-linux-amd64-20210103.tar.gz
-ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.36.2/v2ray-linux-64.zip
-ENV TROJAN_BIN_URL=https://github.com/trojan-gfw/trojan/releases/download/v1.16.0/trojan-1.16.0-linux-amd64.tar.xz
+ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.43.0/v2ray-linux-64.zip
 
 WORKDIR /opt
 ADD . .
@@ -37,17 +23,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && yum -y install epel-release \
     && yum -y install monit
 
-# 安装 shadowsocks-go2
-COPY --from=build /go/bin/go-shadowsocks2 /usr/local/sbin/go-shadowsocks2
-
-# 安装 trojan
-RUN wget --no-check-certificate ${TROJAN_BIN_URL} \
-    && xz -d *.xz \
-    && tar xvf *.tar \
-    && cp trojan/trojan /usr/local/sbin/ \
-# 安装 kcptun
-    && wget --no-check-certificate ${KCPTUN_URL} \
-    && tar -xf *.gz && cp -f server_linux_amd64 /usr/local/sbin/kcptun_server \
 # 安装 v2ray
     && wget --no-check-certificate ${V2RAY_URL} \ 
     && unzip v2ray-linux-64.zip -d /usr/bin/v2ray/ \
