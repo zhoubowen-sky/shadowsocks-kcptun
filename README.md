@@ -10,8 +10,8 @@
   `yum -y install docker-ce`<br>
   `systemctl start docker`<br>
   `systemctl enable docker`<br>
-- 3、将本镜像拉取到服务器上，相关命令如下<br>
-   `docker pull zhoubowen123/shadowsocks-kcptun`
+- 3、使用本仓库构建本地镜像
+  `docker build github.com/zhoubowen-sky/shadowsocks-kcptun`
 - 4、创建对应的容器<br>
   `docker run --privileged --name=passgfw  --restart=always -tid -v /opt/script:/opt/script  -p 80:80/udp -p 80:80/tcp  -p 443:443/udp -p 443:443/tcp zhoubowen123/shadowsocks-kcptun /usr/sbin/init`
 

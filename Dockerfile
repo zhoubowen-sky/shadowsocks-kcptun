@@ -21,7 +21,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && yum -y install nginx \
 # 安装 monit
     && yum -y install epel-release \
-    && yum -y install monit
+    && yum -y install monit \
 
 # 安装 v2ray
     && wget --no-check-certificate ${V2RAY_URL} \ 
