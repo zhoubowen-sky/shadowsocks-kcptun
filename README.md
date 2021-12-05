@@ -16,7 +16,7 @@
   `docker run --privileged --name=passgfw  --restart=always -tid -v /opt/script:/opt/script  -p 80:80/udp -p 80:80/tcp  -p 443:443/udp -p 443:443/tcp zhoubowen123/shadowsocks-kcptun /usr/sbin/init`
 
 - 5、上传SSL证书<br>
-  若需使用镜像中的trojan以及v2ray则需申请对应的域名及证书。
+  需申请对应的域名及证书。
 
 ## 开启BBR
  CentOS开启BRR可参阅 [OPEN BBR](https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7) ...
