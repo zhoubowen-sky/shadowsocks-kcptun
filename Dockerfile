@@ -5,7 +5,7 @@
 FROM centos:7
 LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
 
-ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.43.0/v2ray-linux-64.zip
+ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.44.0/v2ray-linux-64.zip
 
 WORKDIR /opt
 ADD . .
