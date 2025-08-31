@@ -14,7 +14,7 @@ ADD . .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone \
 # 安装基础工具
-    && yum -y update \
+    # && yum -y update \
     && yum -y install wget curl unzip xz-utils \
 # 安装 nginx
     && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
