@@ -1,5 +1,5 @@
 # 安装依赖
-CentOS7.x + Docker 
+CentOS8.x + Docker 
 
 ## 使用方法
 1、安装 docker 
