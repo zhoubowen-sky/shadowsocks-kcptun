@@ -3,7 +3,7 @@
 ## PRODUCTION STAGE ##
 ######################
 FROM centos:7
-LABEL maintainer "zhoubowen <zhoubowen.sky@gmail.com>"
+LABEL maintainer "xxx@xxx.com"
 
 ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.45.2/v2ray-linux-64.zip
 

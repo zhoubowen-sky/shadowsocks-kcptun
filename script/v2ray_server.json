@@ -14,30 +14,6 @@
             "settings": {
                 "clients": [
                     {
-                        "id": "ee14b035-1899-4fcf-aab2-f6c9ec54b588",
-                        "alterId": 0,
-                        "security": "auto",
-                        "level": 0
-                    },
-                    {
-                        "id": "9c9292d5-473f-4f10-9df2-00a69cab44bc",
-                        "alterId": 0,
-                        "security": "auto",
-                        "level": 0
-                    },
-                    {
-                        "id": "2583b3bc-826a-4252-a074-729855d17482",
-                        "alterId": 0,
-                        "security": "auto",
-                        "level": 0
-                    },
-                    {
-                        "id": "2d7c9fd2-2947-4509-969c-20378f6faa3c",
-                        "alterId": 0,
-                        "security": "auto",
-                        "level": 0
-                    },
-                    {
                         "id": "0e3b1c9b-a6f3-49d4-9b60-9f0072727e67",
                         "alterId": 0,
                         "security": "auto",
@@ -50,13 +26,7 @@
                         "level": 0
                     },
                     {
-                        "id": "9fd6e659-a147-6bf7-59ff-5bc8fbc51c6f",
-                        "alterId": 0,
-                        "security": "auto",
-                        "level": 0
-                    },
-                    {
-                        "id": "b3638e57-42e0-d629-dd17-fddca9fd52c7",
+                        "id": "7b45a9f2-5e91-4934-a6f6-d9d665109c78",
                         "alterId": 0,
                         "security": "auto",
                         "level": 0
@@ -67,38 +37,6 @@
                 "network": "ws",
                 "wsSettings": {
                     "path": "/biutefor.icu"
-                }
-            }
-        },
-        
-        {
-            "port": 444,
-            "protocol": "trojan",
-            "settings": {
-                "clients": [
-                    {
-                        "password":"qazwsxedc",
-                        "email": "account1@biutefor.icu"
-                    },
-                    {
-                        "password":"rfvtgbyhn",
-                        "email": "account2@biutefor.icu"
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "security": "tls",
-                "tlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
-                    "certificates": [
-                        {
-                            "certificateFile": "/opt/script/mydomain.pem",
-                            "keyFile": "/opt/script/mydomain.key"
-                        }
-                    ]
                 }
             }
         }

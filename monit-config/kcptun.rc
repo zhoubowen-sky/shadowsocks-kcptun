@@ -1,3 +1,0 @@
-check process kcptun with MATCHING "^.*kcptun_server.*json.*$"
-    start program = "/opt/script/kcptunConsole start" with timeout 30 seconds
-    stop program = "/opt/script/kcptunConsole stop"
