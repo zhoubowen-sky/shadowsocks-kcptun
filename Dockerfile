@@ -14,7 +14,6 @@ ADD . .
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' >/etc/timezone \
 # 安装基础工具
-    # && yum -y update \
     && yum -y install wget curl unzip xz-utils \
 # 安装 nginx
     && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
@@ -39,8 +38,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 # 设定 monit 开机启动 
     && /usr/bin/systemctl enable monit \
     # 删除多余文件
-    && rm -rf .git doc trojan* v2ray* kcptun-linux* client_linux* server_linux* \
+    # && rm -rf .git doc trojan* v2ray* kcptun-linux* client_linux* server_linux* \
 # 给脚本可执行权限
-    && cd /opt/script && chmod a+x *Console \
+    && cd /opt/script && chmod a+x *Console
     # 删除缓存及无用的软件
-    && yum -y remove wget unzip && yum clean all 
+    # && yum -y remove wget unzip && yum clean all 
