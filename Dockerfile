@@ -16,7 +16,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 # 安装基础工具
     && yum -y install wget curl unzip xz-utils \
 # 安装 nginx
-    && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
+    # && rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
     && yum -y install nginx \
 # 安装 monit
     && yum -y install epel-release \
