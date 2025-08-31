@@ -1,5 +1,5 @@
 # 安装依赖
-CentOS8.x + Docker 
+Rockylinux + Docker 
 
 ## 使用方法
 1、安装 docker 

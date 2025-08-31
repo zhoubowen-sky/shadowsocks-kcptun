@@ -2,7 +2,7 @@
 ######################
 ## PRODUCTION STAGE ##
 ######################
-FROM centos:8
+FROM rockylinux:9
 LABEL maintainer "xxx@xxx.com"
 
 ENV V2RAY_URL=https://github.com/v2fly/v2ray-core/releases/download/v4.45.2/v2ray-linux-64.zip
